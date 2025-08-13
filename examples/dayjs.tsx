@@ -7,6 +7,7 @@ import duration from "dayjs/plugin/duration";
 import calendar from "dayjs/plugin/calendar";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import weekOfYear from "dayjs/plugin/weekOfYear";
+import dayOfYear from "dayjs/plugin/dayOfYear";
 import "dayjs/locale/es";
 import { useState, useEffect } from "react";
 
@@ -19,6 +20,7 @@ dayjs.extend(duration);
 dayjs.extend(calendar);
 dayjs.extend(advancedFormat);
 dayjs.extend(weekOfYear);
+dayjs.extend(dayOfYear);
 
 // Configurar idioma
 dayjs.locale('es');
