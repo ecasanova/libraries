@@ -2,11 +2,6 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/fira-code/400.css";
-import "@fontsource/playfair-display/400.css";
-import "@fontsource/playfair-display/700.css";
 import { useState } from "react";
 
 const fontExamples = [
@@ -18,31 +13,31 @@ const fontExamples = [
     category: "Sans Serif"
   },
   {
-    name: "Inter",
-    family: "Inter, sans-serif", 
-    description: "Diseñada para interfaces de usuario",
-    weights: ["400", "600"],
+    name: "Arial",
+    family: "Arial, sans-serif", 
+    description: "Fuente clásica disponible en todos los sistemas",
+    weights: ["400", "700"],
     category: "Sans Serif"
   },
   {
-    name: "Fira Code",
-    family: "Fira Code, monospace",
-    description: "Fuente monospace con ligaduras para código",
-    weights: ["400"],
-    category: "Monospace"
-  },
-  {
-    name: "Playfair Display",
-    family: "Playfair Display, serif",
-    description: "Elegante fuente serif para títulos",
+    name: "Georgia",
+    family: "Georgia, serif",
+    description: "Fuente serif optimizada para pantalla",
     weights: ["400", "700"],
     category: "Serif"
+  },
+  {
+    name: "Courier New",
+    family: "Courier New, monospace",
+    description: "Fuente monospace clásica para código",
+    weights: ["400"],
+    category: "Monospace"
   }
 ];
 
 const sampleTexts = {
   paragraph: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  title: "El Zorro Veloz Salta",
+  title: "El Zorro Veloz Salta Sobre el Perro Perezoso",
   code: "const greeting = 'Hello World!';\nconsole.log(greeting);",
   numbers: "0123456789 + - = * / () [] {}"
 };
@@ -92,7 +87,7 @@ function FontDemo({ font, selectedText }: { font: typeof fontExamples[0], select
               fontWeight: weight 
             }}
           >
-            Weight {weight}: The quick brown fox
+            Weight {weight}: The quick brown fox jumps over the lazy dog
           </div>
         ))}
       </div>
@@ -192,6 +187,27 @@ export default function FontsourceExample() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div className="installation-guide">
+          <h3>📦 Guía de Instalación:</h3>
+          <div className="install-steps">
+            <div className="install-step">
+              <h4>1. Instalar la fuente</h4>
+              <pre className="install-code">npm install @fontsource/roboto</pre>
+            </div>
+            <div className="install-step">
+              <h4>2. Importar en tu componente</h4>
+              <pre className="install-code">{`import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/700.css";`}</pre>
+            </div>
+            <div className="install-step">
+              <h4>3. Usar en CSS o inline</h4>
+              <pre className="install-code">{`.my-text {
+  font-family: 'Roboto', sans-serif;
+}`}</pre>
+            </div>
           </div>
         </div>
       </div>
