@@ -1,4 +1,4 @@
-import { createDragAndDrop } from "@formkit/drag-and-drop";
+import { dragAndDrop } from "@formkit/drag-and-drop";
 import { useEffect, useRef } from "react";
 
 export default function Lista() {
@@ -6,7 +6,7 @@ export default function Lista() {
 
   useEffect(() => {
     if (ref.current) {
-      createDragAndDrop(ref.current);
+      dragAndDrop(ref.current);
     }
   }, []);
 
