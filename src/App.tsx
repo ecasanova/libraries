@@ -2,7 +2,17 @@ import { useEffect, useState } from "react";
 import { ChartJSExample } from "../examples/chartjs";
 import DragAndDropExample from "../examples/drag-and-drop";
 import FontsourceExample from "../examples/fontsource";
-import HotkeysExample from "../examples/hotkeys";
+          <p>
+            📚 Bibliotecas recomendadas por{" "}
+            <a
+              href="https://github.com/midudev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              midudev
+            </a>
+          </p>eysExample from "../examples/hotkeys";
 import FramerMotionExample from "../examples/motion";
 import { Tabla } from "../examples/react-table";
 import { ZustandExample } from "../examples/zustand";
