@@ -1916,6 +1916,25 @@ body {
   text-align: center;
 }
 
+/* Other features sections with same style */
+.zod-features,
+.dayjs-features,
+.hotkeys-features,
+.fontsource-features {
+  background: #f8fafc;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.zod-features h3,
+.dayjs-features h3,
+.hotkeys-features h3,
+.fontsource-features h3 {
+  margin: 0 0 1.5rem 0;
+  color: #374151;
+  text-align: center;
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -2535,6 +2554,15 @@ body {
   
   .validator-controls {
     grid-template-columns: 1fr;
+  }
+  
+  /* Features sections responsive */
+  .zustand-features,
+  .zod-features,
+  .dayjs-features,
+  .hotkeys-features,
+  .fontsource-features {
+    padding: 1rem;
   }
   
   /* Footer responsive */
