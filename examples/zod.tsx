@@ -193,6 +193,18 @@ export default function ZodExample() {
         </p>
       </div>
 
+      <div className="installation-section">
+        <h3>📦 Instalación</h3>
+        <div className="installation-code">
+          <pre>
+            <code>{`npm install zod`}</code>
+          </pre>
+        </div>
+        <p className="installation-note">
+          Zod es una biblioteca de validación de esquemas TypeScript-first con inferencia de tipos estática.
+        </p>
+      </div>
+
       <div className="zod-demo">
         {/* Selector de ejemplos */}
         <div className="example-selector">

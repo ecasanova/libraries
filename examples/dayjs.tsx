@@ -217,6 +217,18 @@ export default function DayjsExample() {
         </p>
       </div>
 
+      <div className="installation-section">
+        <h3>📦 Instalación</h3>
+        <div className="installation-code">
+          <pre>
+            <code>{`npm install dayjs`}</code>
+          </pre>
+        </div>
+        <p className="installation-note">
+          Day.js es una alternativa minimalista a Moment.js con API similar pero solo 2kB.
+        </p>
+      </div>
+
       <div className="dayjs-demo">
         {/* Reloj en tiempo real */}
         <div className="live-clock-section">

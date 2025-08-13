@@ -1348,6 +1348,53 @@ body {
   font-size: 1.1rem;
 }
 
+/* Installation Section Styles */
+.installation-section {
+  background: #f8fafc;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  border-left: 4px solid #3b82f6;
+}
+
+.installation-section h3 {
+  margin: 0 0 1rem 0;
+  color: #374151;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.installation-code {
+  margin-bottom: 1rem;
+}
+
+.installation-code pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 0;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.installation-code code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+.installation-note {
+  margin: 0;
+  color: #6b7280;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
 /* Main Content Styles */
 .main-content {
   flex: 1;
