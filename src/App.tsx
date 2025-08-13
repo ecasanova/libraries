@@ -11,7 +11,11 @@ import ZodExample from "../examples/zod";
 
 const examples = [
   { slug: "chartjs", label: "ChartJS", element: <ChartJSExample /> },
-  { slug: "drag-and-drop", label: "Drag & Drop", element: <DragAndDropExample /> },
+  {
+    slug: "drag-and-drop",
+    label: "Drag & Drop",
+    element: <DragAndDropExample />,
+  },
   { slug: "fontsource", label: "Fontsource", element: <FontsourceExample /> },
   { slug: "hotkeys", label: "Hotkeys", element: <HotkeysExample /> },
   { slug: "motion", label: "Motion", element: <FramerMotionExample /> },
@@ -49,17 +53,18 @@ function HomePage() {
         </p>
         <div className="hero-description">
           <p>
-            Explora ejemplos completos y funcionales de las bibliotecas más populares del ecosistema React.
-            Cada ejemplo incluye código, documentación y casos de uso prácticos.
+            Explora ejemplos completos y funcionales de las bibliotecas más
+            populares del ecosistema React. Cada ejemplo incluye código,
+            documentación y casos de uso prácticos.
           </p>
         </div>
       </div>
 
       <div className="libraries-grid">
         {examples.map((example) => (
-          <a 
-            key={example.slug} 
-            href={`#${example.slug}`} 
+          <a
+            key={example.slug}
+            href={`#${example.slug}`}
             className="library-card"
           >
             <div className="card-header">
@@ -102,15 +107,15 @@ function HomePage() {
 
 function getLibraryDescription(slug: string): string {
   const descriptions: Record<string, string> = {
-    "chartjs": "Gráficos interactivos y responsivos con Chart.js",
+    chartjs: "Gráficos interactivos y responsivos con Chart.js",
     "drag-and-drop": "Funcionalidad drag & drop con @formkit/drag-and-drop",
-    "fontsource": "Fuentes web auto-hospedadas para npm",
-    "hotkeys": "Atajos de teclado potentes con hotkeys-js",
-    "motion": "Animaciones fluidas con Framer Motion",
+    fontsource: "Fuentes web auto-hospedadas para npm",
+    hotkeys: "Atajos de teclado potentes con hotkeys-js",
+    motion: "Animaciones fluidas con Framer Motion",
     "react-table": "Tablas potentes con TanStack Table",
-    "zustand": "Gestión de estado simple y efectiva",
-    "dayjs": "Manipulación de fechas ligera y moderna",
-    "zod": "Validación de esquemas TypeScript-first"
+    zustand: "Gestión de estado simple y efectiva",
+    dayjs: "Manipulación de fechas ligera y moderna",
+    zod: "Validación de esquemas TypeScript-first",
   };
   return descriptions[slug] || "Biblioteca de React";
 }
@@ -141,10 +146,10 @@ export default function App() {
             <a href="#" className="nav-brand" onClick={handleLinkClick}>
               React Libraries
             </a>
-            
+
             {/* Botón hamburguesa */}
-            <button 
-              className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
+            <button
+              className={`hamburger ${mobileMenuOpen ? "active" : ""}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -154,12 +159,16 @@ export default function App() {
             </button>
 
             {/* Navigation Links */}
-            <div className={`nav-links ${mobileMenuOpen ? 'nav-links-mobile open' : 'nav-links-desktop'}`}>
+            <div
+              className={`nav-links ${
+                mobileMenuOpen ? "nav-links-mobile open" : "nav-links-desktop"
+              }`}
+            >
               {examples.map((e) => (
-                <a 
-                  key={e.slug} 
-                  href={`#${e.slug}`} 
-                  className={`nav-link ${example === e.slug ? 'active' : ''}`}
+                <a
+                  key={e.slug}
+                  href={`#${e.slug}`}
+                  className={`nav-link ${example === e.slug ? "active" : ""}`}
                   onClick={handleLinkClick}
                 >
                   {e.label}
@@ -167,11 +176,11 @@ export default function App() {
               ))}
             </div>
           </div>
-          
+
           {/* Overlay para cerrar el menú móvil */}
           {mobileMenuOpen && (
-            <div 
-              className="mobile-overlay" 
+            <div
+              className="mobile-overlay"
               onClick={() => setMobileMenuOpen(false)}
             ></div>
           )}
@@ -184,9 +193,9 @@ export default function App() {
         <div className="footer-content">
           <p>
             ✨ Creado con ❤️ por{" "}
-            <a 
-              href="https://github.com/ecasanova" 
-              target="_blank" 
+            <a
+              href="https://github.com/ecasanova"
+              target="_blank"
               rel="noopener noreferrer"
               className="footer-link"
             >
@@ -195,9 +204,9 @@ export default function App() {
           </p>
           <p>
             📂 Código fuente disponible en{" "}
-            <a 
-              href="https://github.com/ecasanova/libraries" 
-              target="_blank" 
+            <a
+              href="https://github.com/ecasanova/libraries"
+              target="_blank"
               rel="noopener noreferrer"
               className="footer-link"
             >

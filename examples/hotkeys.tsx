@@ -19,7 +19,7 @@ export default function HotkeysExample() {
   const [log, setLog] = useState<LogEntry[]>([]);
   const [counter, setCounter] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [notifications, setNotifications] = useState<string[]>([]);
 
   const addLog = (hotkey: string, description: string) => {
@@ -27,15 +27,15 @@ export default function HotkeysExample() {
       id: Date.now(),
       timestamp: new Date().toLocaleTimeString(),
       hotkey,
-      description
+      description,
     };
-    setLog(prev => [newEntry, ...prev.slice(0, 9)]); // Mantener solo 10 entradas
+    setLog((prev) => [newEntry, ...prev.slice(0, 9)]); // Mantener solo 10 entradas
   };
 
   const showNotification = (message: string) => {
-    setNotifications(prev => [...prev, message]);
+    setNotifications((prev) => [...prev, message]);
     setTimeout(() => {
-      setNotifications(prev => prev.slice(1));
+      setNotifications((prev) => prev.slice(1));
     }, 3000);
   };
 
@@ -48,7 +48,7 @@ export default function HotkeysExample() {
         addLog("Ctrl+K", "Modal abierto");
         showNotification("🔍 Modal abierto");
       },
-      category: "Navegación"
+      category: "Navegación",
     },
     {
       key: "escape",
@@ -57,27 +57,27 @@ export default function HotkeysExample() {
         setIsModalOpen(false);
         addLog("Escape", "Modal cerrado");
       },
-      category: "Navegación"
+      category: "Navegación",
     },
     {
       key: "ctrl+j,command+j",
       description: "Incrementar contador",
       action: () => {
-        setCounter(prev => prev + 1);
+        setCounter((prev) => prev + 1);
         addLog("Ctrl+J", "Contador incrementado");
         showNotification("➕ Contador: " + (counter + 1));
       },
-      category: "Acciones"
+      category: "Acciones",
     },
     {
       key: "ctrl+h,command+h",
       description: "Decrementar contador",
       action: () => {
-        setCounter(prev => Math.max(0, prev - 1));
+        setCounter((prev) => Math.max(0, prev - 1));
         addLog("Ctrl+H", "Contador decrementado");
         showNotification("➖ Contador: " + Math.max(0, counter - 1));
       },
-      category: "Acciones"
+      category: "Acciones",
     },
     {
       key: "ctrl+r,command+r",
@@ -87,18 +87,18 @@ export default function HotkeysExample() {
         addLog("Ctrl+R", "Contador reseteado");
         showNotification("🔄 Contador reseteado");
       },
-      category: "Acciones"
+      category: "Acciones",
     },
     {
       key: "ctrl+t,command+t",
       description: "Cambiar tema",
       action: () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
+        const newTheme = theme === "light" ? "dark" : "light";
         setTheme(newTheme);
         addLog("Ctrl+T", `Tema cambiado a ${newTheme}`);
         showNotification(`🎨 Tema: ${newTheme}`);
       },
-      category: "Configuración"
+      category: "Configuración",
     },
     {
       key: "ctrl+l,command+l",
@@ -108,7 +108,7 @@ export default function HotkeysExample() {
         addLog("Ctrl+L", "Log limpiado");
         showNotification("🧹 Log limpiado");
       },
-      category: "Utilidades"
+      category: "Utilidades",
     },
     {
       key: "ctrl+?,command+?",
@@ -117,8 +117,8 @@ export default function HotkeysExample() {
         addLog("Ctrl+?", "Ayuda solicitada");
         showNotification("❓ Revisa la lista de atajos abajo");
       },
-      category: "Ayuda"
-    }
+      category: "Ayuda",
+    },
   ];
 
   useEffect(() => {
@@ -147,7 +147,9 @@ export default function HotkeysExample() {
   }, {} as Record<string, HotkeyAction[]>);
 
   return (
-    <div className={`example-container ${theme === 'dark' ? 'dark-theme' : ''}`}>
+    <div
+      className={`example-container ${theme === "dark" ? "dark-theme" : ""}`}
+    >
       <div className="example-header">
         <h1>⌨️ Hotkeys.js</h1>
         <p>Atajos de teclado poderosos y flexibles para aplicaciones web</p>
@@ -178,7 +180,9 @@ export default function HotkeysExample() {
               </div>
               <div className="state-item">
                 <label>Modal:</label>
-                <span className="state-value">{isModalOpen ? 'Abierto' : 'Cerrado'}</span>
+                <span className="state-value">
+                  {isModalOpen ? "Abierto" : "Cerrado"}
+                </span>
               </div>
             </div>
           </div>
@@ -188,7 +192,9 @@ export default function HotkeysExample() {
             <h3>📝 Log de Actividad</h3>
             <div className="log-container">
               {log.length === 0 ? (
-                <p className="no-activity">Sin actividad. ¡Prueba algunos atajos!</p>
+                <p className="no-activity">
+                  Sin actividad. ¡Prueba algunos atajos!
+                </p>
               ) : (
                 log.map((entry) => (
                   <div key={entry.id} className="log-entry">
@@ -212,12 +218,17 @@ export default function HotkeysExample() {
                 {hotkeys.map((hotkey, index) => (
                   <div key={index} className="hotkey-item">
                     <div className="hotkey-combo">
-                      {hotkey.key.split(',')[0].split('+').map((key, i, arr) => (
-                        <span key={i}>
-                          <kbd className="key">{key}</kbd>
-                          {i < arr.length - 1 && <span className="plus">+</span>}
-                        </span>
-                      ))}
+                      {hotkey.key
+                        .split(",")[0]
+                        .split("+")
+                        .map((key, i, arr) => (
+                          <span key={i}>
+                            <kbd className="key">{key}</kbd>
+                            {i < arr.length - 1 && (
+                              <span className="plus">+</span>
+                            )}
+                          </span>
+                        ))}
                     </div>
                     <div className="hotkey-desc">{hotkey.description}</div>
                   </div>
@@ -231,10 +242,12 @@ export default function HotkeysExample() {
         <div className="interactive-area">
           <h3>🎮 Área Interactiva</h3>
           <p>Haz clic aquí y prueba los atajos de teclado:</p>
-          <div 
+          <div
             className="focus-area"
             tabIndex={0}
-            onFocus={() => showNotification("✨ Área enfocada - atajos activos")}
+            onFocus={() =>
+              showNotification("✨ Área enfocada - atajos activos")
+            }
           >
             <div className="counter-display">
               <span className="counter-label">Contador:</span>
@@ -251,7 +264,7 @@ export default function HotkeysExample() {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h3>🔍 Búsqueda Rápida</h3>
-              <button 
+              <button
                 className="modal-close"
                 onClick={() => setIsModalOpen(false)}
               >
@@ -259,9 +272,9 @@ export default function HotkeysExample() {
               </button>
             </div>
             <div className="modal-body">
-              <input 
-                type="text" 
-                placeholder="Buscar..." 
+              <input
+                type="text"
+                placeholder="Buscar..."
                 className="search-input"
                 autoFocus
               />
@@ -298,7 +311,7 @@ export default function HotkeysExample() {
       <div className="code-example">
         <h3>📖 Código de ejemplo:</h3>
         <pre>
-{`import hotkeys from "hotkeys-js";
+          {`import hotkeys from "hotkeys-js";
 
 // Hotkey simple
 hotkeys('ctrl+k', (event) => {

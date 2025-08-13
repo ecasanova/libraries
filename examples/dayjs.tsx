@@ -23,7 +23,7 @@ dayjs.extend(weekOfYear);
 dayjs.extend(dayOfYear);
 
 // Configurar idioma
-dayjs.locale('es');
+dayjs.locale("es");
 
 interface DateOperation {
   title: string;
@@ -35,8 +35,10 @@ interface DateOperation {
 
 export default function DayjsExample() {
   const [currentTime, setCurrentTime] = useState(dayjs());
-  const [selectedTimezone, setSelectedTimezone] = useState('America/Mexico_City');
-  const [customDate, setCustomDate] = useState('2024-12-25');
+  const [selectedTimezone, setSelectedTimezone] = useState(
+    "America/Mexico_City"
+  );
+  const [customDate, setCustomDate] = useState("2024-12-25");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Actualizar hora cada segundo
@@ -48,17 +50,17 @@ export default function DayjsExample() {
   }, []);
 
   const timezones = [
-    'America/Mexico_City',
-    'America/New_York', 
-    'Europe/London',
-    'Europe/Paris',
-    'Asia/Tokyo',
-    'Asia/Shanghai',
-    'Australia/Sydney'
+    "America/Mexico_City",
+    "America/New_York",
+    "Europe/London",
+    "Europe/Paris",
+    "Asia/Tokyo",
+    "Asia/Shanghai",
+    "Australia/Sydney",
   ];
 
   const now = dayjs();
-  const birthday = dayjs('1990-05-15');
+  const birthday = dayjs("1990-05-15");
   const christmas = dayjs(customDate);
 
   const operations: DateOperation[] = [
@@ -67,29 +69,29 @@ export default function DayjsExample() {
       title: "Formato básico",
       description: "Formatear fecha actual",
       code: "dayjs().format('DD/MM/YYYY')",
-      result: now.format('DD/MM/YYYY'),
-      category: "Formato"
+      result: now.format("DD/MM/YYYY"),
+      category: "Formato",
     },
     {
       title: "Formato completo",
       description: "Fecha y hora completa",
       code: "dayjs().format('dddd, DD [de] MMMM [de] YYYY [a las] HH:mm:ss')",
-      result: now.format('dddd, DD [de] MMMM [de] YYYY [a las] HH:mm:ss'),
-      category: "Formato"
+      result: now.format("dddd, DD [de] MMMM [de] YYYY [a las] HH:mm:ss"),
+      category: "Formato",
     },
     {
       title: "Formato ISO",
       description: "Formato estándar ISO",
       code: "dayjs().toISOString()",
       result: now.toISOString(),
-      category: "Formato"
+      category: "Formato",
     },
     {
       title: "Unix timestamp",
       description: "Timestamp en segundos",
       code: "dayjs().unix()",
       result: now.unix().toString(),
-      category: "Formato"
+      category: "Formato",
     },
 
     // Tiempo relativo
@@ -98,28 +100,28 @@ export default function DayjsExample() {
       description: "Tiempo transcurrido desde cumpleaños",
       code: "dayjs('1990-05-15').fromNow()",
       result: birthday.fromNow(),
-      category: "Relativo"
+      category: "Relativo",
     },
     {
       title: "En cuánto tiempo",
       description: "Tiempo hasta Navidad",
       code: `dayjs('${customDate}').fromNow()`,
       result: christmas.fromNow(),
-      category: "Relativo"
+      category: "Relativo",
     },
     {
       title: "Diferencia en días",
       description: "Días transcurridos",
       code: "dayjs().diff(dayjs('1990-05-15'), 'day')",
-      result: now.diff(birthday, 'day').toString() + ' días',
-      category: "Relativo"
+      result: now.diff(birthday, "day").toString() + " días",
+      category: "Relativo",
     },
     {
       title: "Diferencia en años",
       description: "Edad en años",
       code: "dayjs().diff(dayjs('1990-05-15'), 'year')",
-      result: now.diff(birthday, 'year').toString() + ' años',
-      category: "Relativo"
+      result: now.diff(birthday, "year").toString() + " años",
+      category: "Relativo",
     },
 
     // Manipulación
@@ -127,29 +129,29 @@ export default function DayjsExample() {
       title: "Agregar tiempo",
       description: "Fecha en 30 días",
       code: "dayjs().add(30, 'day').format('DD/MM/YYYY')",
-      result: now.add(30, 'day').format('DD/MM/YYYY'),
-      category: "Manipulación"
+      result: now.add(30, "day").format("DD/MM/YYYY"),
+      category: "Manipulación",
     },
     {
       title: "Restar tiempo",
       description: "Fecha hace 6 meses",
       code: "dayjs().subtract(6, 'month').format('DD/MM/YYYY')",
-      result: now.subtract(6, 'month').format('DD/MM/YYYY'),
-      category: "Manipulación"
+      result: now.subtract(6, "month").format("DD/MM/YYYY"),
+      category: "Manipulación",
     },
     {
       title: "Inicio del día",
       description: "Medianoche de hoy",
       code: "dayjs().startOf('day').format('DD/MM/YYYY HH:mm:ss')",
-      result: now.startOf('day').format('DD/MM/YYYY HH:mm:ss'),
-      category: "Manipulación"
+      result: now.startOf("day").format("DD/MM/YYYY HH:mm:ss"),
+      category: "Manipulación",
     },
     {
       title: "Fin del mes",
       description: "Último día del mes",
       code: "dayjs().endOf('month').format('DD/MM/YYYY')",
-      result: now.endOf('month').format('DD/MM/YYYY'),
-      category: "Manipulación"
+      result: now.endOf("month").format("DD/MM/YYYY"),
+      category: "Manipulación",
     },
 
     // Validación y comparación
@@ -157,22 +159,22 @@ export default function DayjsExample() {
       title: "Es antes",
       description: "¿Navidad es antes que hoy?",
       code: `dayjs('${customDate}').isBefore(dayjs())`,
-      result: christmas.isBefore(now) ? 'Sí' : 'No',
-      category: "Comparación"
+      result: christmas.isBefore(now) ? "Sí" : "No",
+      category: "Comparación",
     },
     {
       title: "Es mismo año",
       description: "¿Navidad es este año?",
       code: `dayjs('${customDate}').isSame(dayjs(), 'year')`,
-      result: christmas.isSame(now, 'year') ? 'Sí' : 'No',
-      category: "Comparación"
+      result: christmas.isSame(now, "year") ? "Sí" : "No",
+      category: "Comparación",
     },
     {
       title: "Es válida",
       description: "¿La fecha es válida?",
       code: "dayjs('2024-02-30').isValid()",
-      result: dayjs('2024-02-30').isValid() ? 'Sí' : 'No',
-      category: "Comparación"
+      result: dayjs("2024-02-30").isValid() ? "Sí" : "No",
+      category: "Comparación",
     },
 
     // Información
@@ -181,35 +183,38 @@ export default function DayjsExample() {
       description: "Día número del año",
       code: "dayjs().dayOfYear()",
       result: now.dayOfYear().toString(),
-      category: "Información"
+      category: "Información",
     },
     {
       title: "Semana del año",
       description: "Semana número del año",
       code: "dayjs().week()",
       result: now.week().toString(),
-      category: "Información"
+      category: "Información",
     },
     {
       title: "Días en el mes",
       description: "Cantidad de días este mes",
       code: "dayjs().daysInMonth()",
       result: now.daysInMonth().toString(),
-      category: "Información"
-    }
+      category: "Información",
+    },
   ];
 
-  const categories = [...new Set(operations.map(op => op.category))];
-  
-  const filteredOperations = selectedCategory 
-    ? operations.filter(op => op.category === selectedCategory)
+  const categories = [...new Set(operations.map((op) => op.category))];
+
+  const filteredOperations = selectedCategory
+    ? operations.filter((op) => op.category === selectedCategory)
     : operations;
 
   return (
     <div className="example-container">
       <div className="example-header">
         <h1>📅 Day.js</h1>
-        <p>Biblioteca minimalista para manipular, validar, formatear y mostrar fechas</p>
+        <p>
+          Biblioteca minimalista para manipular, validar, formatear y mostrar
+          fechas
+        </p>
       </div>
 
       <div className="dayjs-demo">
@@ -218,32 +223,36 @@ export default function DayjsExample() {
           <div className="live-clock">
             <h3>🕐 Reloj en Tiempo Real</h3>
             <div className="clock-display">
-              <div className="time">{currentTime.format('HH:mm:ss')}</div>
-              <div className="date">{currentTime.format('dddd, DD [de] MMMM [de] YYYY')}</div>
+              <div className="time">{currentTime.format("HH:mm:ss")}</div>
+              <div className="date">
+                {currentTime.format("dddd, DD [de] MMMM [de] YYYY")}
+              </div>
             </div>
           </div>
 
           {/* Zonas horarias */}
           <div className="timezone-section">
             <h3>🌍 Zonas Horarias</h3>
-            <select 
+            <select
               value={selectedTimezone}
               onChange={(e) => setSelectedTimezone(e.target.value)}
               className="timezone-select"
             >
-              {timezones.map(tz => (
-                <option key={tz} value={tz}>{tz}</option>
+              {timezones.map((tz) => (
+                <option key={tz} value={tz}>
+                  {tz}
+                </option>
               ))}
             </select>
             <div className="timezone-display">
               <div className="timezone-time">
-                {currentTime.tz(selectedTimezone).format('HH:mm:ss')}
+                {currentTime.tz(selectedTimezone).format("HH:mm:ss")}
               </div>
               <div className="timezone-date">
-                {currentTime.tz(selectedTimezone).format('DD/MM/YYYY')}
+                {currentTime.tz(selectedTimezone).format("DD/MM/YYYY")}
               </div>
               <div className="timezone-offset">
-                UTC{currentTime.tz(selectedTimezone).format('Z')}
+                UTC{currentTime.tz(selectedTimezone).format("Z")}
               </div>
             </div>
           </div>
@@ -254,7 +263,7 @@ export default function DayjsExample() {
           <h3>🎯 Fecha Personalizada</h3>
           <div className="control-group">
             <label>Selecciona una fecha para las operaciones:</label>
-            <input 
+            <input
               type="date"
               value={customDate}
               onChange={(e) => setCustomDate(e.target.value)}
@@ -267,16 +276,22 @@ export default function DayjsExample() {
         <div className="category-filters">
           <h3>📋 Filtrar por Categoría</h3>
           <div className="filter-buttons">
-            <button 
-              className={`btn ${selectedCategory === null ? 'btn-primary' : 'btn-secondary'}`}
+            <button
+              className={`btn ${
+                selectedCategory === null ? "btn-primary" : "btn-secondary"
+              }`}
               onClick={() => setSelectedCategory(null)}
             >
               📋 Todas
             </button>
-            {categories.map(category => (
-              <button 
+            {categories.map((category) => (
+              <button
                 key={category}
-                className={`btn ${selectedCategory === category ? 'btn-primary' : 'btn-secondary'}`}
+                className={`btn ${
+                  selectedCategory === category
+                    ? "btn-primary"
+                    : "btn-secondary"
+                }`}
                 onClick={() => setSelectedCategory(category)}
               >
                 {category}
@@ -311,15 +326,19 @@ export default function DayjsExample() {
             <div className="duration-examples">
               <div className="duration-item">
                 <label>1 hora en minutos:</label>
-                <span>{dayjs.duration(1, 'hour').asMinutes()} minutos</span>
+                <span>{dayjs.duration(1, "hour").asMinutes()} minutos</span>
               </div>
               <div className="duration-item">
                 <label>90 minutos humanizado:</label>
-                <span>{dayjs.duration(90, 'minutes').humanize()}</span>
+                <span>{dayjs.duration(90, "minutes").humanize()}</span>
               </div>
               <div className="duration-item">
                 <label>Tiempo hasta fin de año:</label>
-                <span>{dayjs.duration(dayjs().endOf('year').diff(dayjs())).humanize(true)}</span>
+                <span>
+                  {dayjs
+                    .duration(dayjs().endOf("year").diff(dayjs()))
+                    .humanize(true)}
+                </span>
               </div>
             </div>
           </div>
@@ -329,15 +348,15 @@ export default function DayjsExample() {
             <div className="calendar-examples">
               <div className="calendar-item">
                 <label>Ayer:</label>
-                <span>{dayjs().subtract(1, 'day').calendar()}</span>
+                <span>{dayjs().subtract(1, "day").calendar()}</span>
               </div>
               <div className="calendar-item">
                 <label>Mañana:</label>
-                <span>{dayjs().add(1, 'day').calendar()}</span>
+                <span>{dayjs().add(1, "day").calendar()}</span>
               </div>
               <div className="calendar-item">
                 <label>La semana pasada:</label>
-                <span>{dayjs().subtract(1, 'week').calendar()}</span>
+                <span>{dayjs().subtract(1, "week").calendar()}</span>
               </div>
             </div>
           </div>
@@ -369,7 +388,7 @@ export default function DayjsExample() {
       <div className="code-example">
         <h3>📖 Código de ejemplo:</h3>
         <pre>
-{`import dayjs from 'dayjs';
+          {`import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/es';
 

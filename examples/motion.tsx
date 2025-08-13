@@ -5,35 +5,35 @@ const animationVariants = {
   fadeIn: {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
-    exit: { opacity: 0 }
+    exit: { opacity: 0 },
   },
   slideUp: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 }
+    exit: { opacity: 0, y: -20 },
   },
   scale: {
     initial: { opacity: 0, scale: 0.8 },
     animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.8 }
+    exit: { opacity: 0, scale: 0.8 },
   },
   rotate: {
     initial: { opacity: 0, rotate: -180 },
     animate: { opacity: 1, rotate: 0 },
-    exit: { opacity: 0, rotate: 180 }
-  }
+    exit: { opacity: 0, rotate: 180 },
+  },
 };
 
 const springConfig = {
   type: "spring",
   stiffness: 300,
-  damping: 30
+  damping: 30,
 };
 
-function AnimationDemo({ 
-  variant, 
-  children 
-}: { 
+function AnimationDemo({
+  variant,
+  children,
+}: {
   variant: keyof typeof animationVariants;
   children: React.ReactNode;
 }) {
@@ -59,17 +59,17 @@ function FloatingCard() {
       className="floating-card"
       animate={{
         y: [-10, 10, -10],
-        rotate: [-1, 1, -1]
+        rotate: [-1, 1, -1],
       }}
       transition={{
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut",
       }}
       whileHover={{
         scale: 1.1,
         rotate: 0,
-        y: -5
+        y: -5,
       }}
     >
       <h4>🌟 Floating Card</h4>
@@ -80,20 +80,20 @@ function FloatingCard() {
 
 function StaggeredList() {
   const items = ["React", "TypeScript", "Framer Motion", "Vite"];
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 }
+    visible: { opacity: 1, x: 0 },
   };
 
   return (
@@ -118,14 +118,17 @@ function StaggeredList() {
 }
 
 export default function FramerMotionExample() {
-  const [currentAnimation, setCurrentAnimation] = useState<keyof typeof animationVariants>("fadeIn");
+  const [currentAnimation, setCurrentAnimation] =
+    useState<keyof typeof animationVariants>("fadeIn");
   const [showElement, setShowElement] = useState(true);
   const [counter, setCounter] = useState(0);
 
   const cycleAnimation = () => {
     setShowElement(false);
     setTimeout(() => {
-      const animations = Object.keys(animationVariants) as (keyof typeof animationVariants)[];
+      const animations = Object.keys(
+        animationVariants
+      ) as (keyof typeof animationVariants)[];
       const currentIndex = animations.indexOf(currentAnimation);
       const nextIndex = (currentIndex + 1) % animations.length;
       setCurrentAnimation(animations[nextIndex]);
@@ -152,11 +155,14 @@ export default function FramerMotionExample() {
               Actual: <strong>{currentAnimation}</strong>
             </span>
           </div>
-          
+
           <div className="animation-showcase">
             <AnimatePresence mode="wait">
               {showElement && (
-                <AnimationDemo key={currentAnimation} variant={currentAnimation}>
+                <AnimationDemo
+                  key={currentAnimation}
+                  variant={currentAnimation}
+                >
                   <h4>🎯 {currentAnimation}</h4>
                   <p>Ejemplo de animación</p>
                 </AnimationDemo>
@@ -220,20 +226,25 @@ export default function FramerMotionExample() {
             <motion.div
               className="draggable-box"
               drag
-              dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
+              dragConstraints={{
+                left: -100,
+                right: 100,
+                top: -100,
+                bottom: 100,
+              }}
               dragElastic={0.2}
               whileDrag={{ scale: 1.2, rotate: 5 }}
               initial={{ x: 0, y: 0 }}
             >
               <p>🔄 Arrástrame</p>
             </motion.div>
-            
+
             <motion.button
               className="gesture-button"
-              whileHover={{ 
+              whileHover={{
                 scale: 1.1,
                 backgroundColor: "#3b82f6",
-                boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)"
+                boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)",
               }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 400 }}
@@ -269,7 +280,7 @@ export default function FramerMotionExample() {
       <div className="code-example">
         <h3>📖 Código de ejemplo:</h3>
         <pre>
-{`import { motion } from "framer-motion";
+          {`import { motion } from "framer-motion";
 
 function AnimatedComponent() {
   return (

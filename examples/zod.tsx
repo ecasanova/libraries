@@ -11,13 +11,13 @@ const UserSchema = z.object({
   preferences: z.object({
     newsletter: z.boolean(),
     theme: z.enum(["light", "dark", "auto"]),
-    language: z.string().min(2).max(5)
+    language: z.string().min(2).max(5),
   }),
   tags: z.array(z.string().min(1)).min(1, "Debe tener al menos un tag"),
   birthDate: z.string().refine((date) => {
     const parsed = new Date(date);
     return !isNaN(parsed.getTime()) && parsed < new Date();
-  }, "Fecha de nacimiento inválida")
+  }, "Fecha de nacimiento inválida"),
 });
 
 const PostSchema = z.object({
@@ -29,22 +29,22 @@ const PostSchema = z.object({
   metadata: z.object({
     views: z.number().nonnegative(),
     likes: z.number().nonnegative(),
-    readTime: z.number().positive()
-  })
+    readTime: z.number().positive(),
+  }),
 });
 
 const ApiResponseSchema = z.object({
   success: z.boolean(),
   data: z.union([
     z.object({
-      users: z.array(UserSchema.omit({ preferences: true }))
+      users: z.array(UserSchema.omit({ preferences: true })),
     }),
     z.object({
-      posts: z.array(PostSchema.partial({ metadata: true }))
-    })
+      posts: z.array(PostSchema.partial({ metadata: true })),
+    }),
   ]),
   message: z.string(),
-  timestamp: z.string().datetime()
+  timestamp: z.string().datetime(),
 });
 
 type User = z.infer<typeof UserSchema>;
@@ -60,7 +60,7 @@ interface ValidationExample {
 
 export default function ZodExample() {
   const [selectedExample, setSelectedExample] = useState(0);
-  const [customData, setCustomData] = useState('');
+  const [customData, setCustomData] = useState("");
   const [validationResult, setValidationResult] = useState<any>(null);
 
   const examples: ValidationExample[] = [
@@ -69,17 +69,17 @@ export default function ZodExample() {
       schema: UserSchema,
       validData: {
         name: "Juan Pérez",
-        email: "juan@example.com", 
+        email: "juan@example.com",
         age: 30,
         website: "https://juanperez.com",
         role: "user",
         preferences: {
           newsletter: true,
           theme: "dark",
-          language: "es"
+          language: "es",
         },
         tags: ["developer", "react"],
-        birthDate: "1994-05-15"
+        birthDate: "1994-05-15",
       },
       invalidData: {
         name: "J",
@@ -90,27 +90,29 @@ export default function ZodExample() {
         preferences: {
           newsletter: "yes",
           theme: "purple",
-          language: "español-mexicano"
+          language: "español-mexicano",
         },
         tags: [],
-        birthDate: "2030-01-01"
+        birthDate: "2030-01-01",
       },
-      description: "Esquema complejo con validaciones anidadas y personalizadas"
+      description:
+        "Esquema complejo con validaciones anidadas y personalizadas",
     },
     {
       name: "Post del Blog",
       schema: PostSchema,
       validData: {
         title: "Introducción a Zod para validación",
-        content: "Zod es una biblioteca de validación de esquemas TypeScript-first...",
+        content:
+          "Zod es una biblioteca de validación de esquemas TypeScript-first...",
         category: "tech",
         published: true,
         tags: ["typescript", "validation", "zod"],
         metadata: {
           views: 1250,
           likes: 45,
-          readTime: 5
-        }
+          readTime: 5,
+        },
       },
       invalidData: {
         title: "Muy",
@@ -121,10 +123,10 @@ export default function ZodExample() {
         metadata: {
           views: -10,
           likes: -5,
-          readTime: 0
-        }
+          readTime: 0,
+        },
       },
-      description: "Validación de contenido con límites y enums"
+      description: "Validación de contenido con límites y enums",
     },
     {
       name: "Respuesta de API",
@@ -133,22 +135,30 @@ export default function ZodExample() {
         success: true,
         data: {
           users: [
-            { name: "Ana", email: "ana@test.com", age: 25, role: "admin", tags: ["manager"], birthDate: "1998-01-01" }
-          ]
+            {
+              name: "Ana",
+              email: "ana@test.com",
+              age: 25,
+              role: "admin",
+              tags: ["manager"],
+              birthDate: "1998-01-01",
+            },
+          ],
         },
         message: "Usuarios obtenidos exitosamente",
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       },
       invalidData: {
         success: "true",
         data: {
-          invalid: "structure"
+          invalid: "structure",
         },
         message: 123,
-        timestamp: "not-a-datetime"
+        timestamp: "not-a-datetime",
       },
-      description: "Esquema para respuestas de API con unions y tipos complejos"
-    }
+      description:
+        "Esquema para respuestas de API con unions y tipos complejos",
+    },
   ];
 
   const validateCustomData = () => {
@@ -159,7 +169,7 @@ export default function ZodExample() {
     } catch (error) {
       setValidationResult({
         success: false,
-        error: { message: "JSON inválido" }
+        error: { message: "JSON inválido" },
       });
     }
   };
@@ -177,7 +187,10 @@ export default function ZodExample() {
     <div className="example-container">
       <div className="example-header">
         <h1>🛡️ Zod</h1>
-        <p>Validación de esquemas TypeScript-first con inferencia de tipos estática</p>
+        <p>
+          Validación de esquemas TypeScript-first con inferencia de tipos
+          estática
+        </p>
       </div>
 
       <div className="zod-demo">
@@ -188,16 +201,16 @@ export default function ZodExample() {
             {examples.map((example, index) => (
               <button
                 key={index}
-                className={`btn ${selectedExample === index ? 'btn-primary' : 'btn-secondary'}`}
+                className={`btn ${
+                  selectedExample === index ? "btn-primary" : "btn-secondary"
+                }`}
                 onClick={() => setSelectedExample(index)}
               >
                 {example.name}
               </button>
             ))}
           </div>
-          <p className="example-description">
-            {currentExample.description}
-          </p>
+          <p className="example-description">{currentExample.description}</p>
         </div>
 
         {/* Esquema actual */}
@@ -205,7 +218,8 @@ export default function ZodExample() {
           <h3>📐 Esquema de Validación</h3>
           <div className="schema-code">
             <pre>
-{selectedExample === 0 && `const UserSchema = z.object({
+              {selectedExample === 0 &&
+                `const UserSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
   age: z.number().min(18).max(120),
@@ -219,7 +233,8 @@ export default function ZodExample() {
   tags: z.array(z.string()).min(1),
   birthDate: z.string().refine(/* custom validation */)
 });`}
-{selectedExample === 1 && `const PostSchema = z.object({
+              {selectedExample === 1 &&
+                `const PostSchema = z.object({
   title: z.string().min(5).max(100),
   content: z.string().min(10),
   category: z.enum(["tech", "lifestyle", "business", "education"]),
@@ -231,7 +246,8 @@ export default function ZodExample() {
     readTime: z.number().positive()
   })
 });`}
-{selectedExample === 2 && `const ApiResponseSchema = z.object({
+              {selectedExample === 2 &&
+                `const ApiResponseSchema = z.object({
   success: z.boolean(),
   data: z.union([
     z.object({ users: z.array(UserSchema.omit({ preferences: true })) }),
@@ -253,7 +269,11 @@ export default function ZodExample() {
               <div className="data-display">
                 <pre>{JSON.stringify(currentExample.validData, null, 2)}</pre>
               </div>
-              <div className={`result ${validResult.success ? 'success' : 'error'}`}>
+              <div
+                className={`result ${
+                  validResult.success ? "success" : "error"
+                }`}
+              >
                 <strong>Resultado:</strong>
                 {validResult.success ? (
                   <span className="success-message">✅ Validación exitosa</span>
@@ -271,19 +291,30 @@ export default function ZodExample() {
               <div className="data-display">
                 <pre>{JSON.stringify(currentExample.invalidData, null, 2)}</pre>
               </div>
-              <div className={`result ${invalidResult.success ? 'success' : 'error'}`}>
+              <div
+                className={`result ${
+                  invalidResult.success ? "success" : "error"
+                }`}
+              >
                 <strong>Resultado:</strong>
                 {invalidResult.success ? (
-                  <span className="success-message">✅ Validación exitosa (inesperado)</span>
+                  <span className="success-message">
+                    ✅ Validación exitosa (inesperado)
+                  </span>
                 ) : (
                   <div className="error-details">
-                    <span className="error-message">❌ Errores encontrados:</span>
+                    <span className="error-message">
+                      ❌ Errores encontrados:
+                    </span>
                     <ul className="error-list">
-                      {invalidResult.error?.issues?.map((issue: any, index: number) => (
-                        <li key={index} className="error-item">
-                          <strong>{issue.path.join('.')}</strong>: {issue.message}
-                        </li>
-                      ))}
+                      {invalidResult.error?.issues?.map(
+                        (issue: any, index: number) => (
+                          <li key={index} className="error-item">
+                            <strong>{issue.path.join(".")}</strong>:{" "}
+                            {issue.message}
+                          </li>
+                        )
+                      )}
                     </ul>
                   </div>
                 )}
@@ -303,7 +334,7 @@ export default function ZodExample() {
               className="json-input"
               rows={8}
             />
-            <button 
+            <button
               onClick={validateCustomData}
               className="btn btn-primary validate-btn"
               disabled={!customData.trim()}
@@ -313,11 +344,17 @@ export default function ZodExample() {
           </div>
 
           {validationResult && (
-            <div className={`validation-result ${validationResult.success ? 'success' : 'error'}`}>
+            <div
+              className={`validation-result ${
+                validationResult.success ? "success" : "error"
+              }`}
+            >
               <h4>📋 Resultado de Validación:</h4>
               {validationResult.success ? (
                 <div className="success-result">
-                  <p className="success-message">✅ JSON válido según el esquema</p>
+                  <p className="success-message">
+                    ✅ JSON válido según el esquema
+                  </p>
                   <details>
                     <summary>Ver datos procesados</summary>
                     <pre>{JSON.stringify(validationResult.data, null, 2)}</pre>
@@ -328,11 +365,14 @@ export default function ZodExample() {
                   <p className="error-message">❌ JSON inválido</p>
                   {validationResult.error?.issues ? (
                     <ul className="error-list">
-                      {validationResult.error.issues.map((issue: any, index: number) => (
-                        <li key={index} className="error-item">
-                          <strong>{issue.path.join('.')}</strong>: {issue.message}
-                        </li>
-                      ))}
+                      {validationResult.error.issues.map(
+                        (issue: any, index: number) => (
+                          <li key={index} className="error-item">
+                            <strong>{issue.path.join(".")}</strong>:{" "}
+                            {issue.message}
+                          </li>
+                        )
+                      )}
                     </ul>
                   ) : (
                     <p>{validationResult.error?.message}</p>
@@ -348,7 +388,8 @@ export default function ZodExample() {
           <h3>🔷 Tipos TypeScript Inferidos</h3>
           <div className="types-display">
             <pre>
-{selectedExample === 0 && `type User = z.infer<typeof UserSchema>;
+              {selectedExample === 0 &&
+                `type User = z.infer<typeof UserSchema>;
 // Equivale a:
 type User = {
   name: string;
@@ -364,7 +405,8 @@ type User = {
   tags: string[];
   birthDate: string;
 }`}
-{selectedExample === 1 && `type Post = z.infer<typeof PostSchema>;
+              {selectedExample === 1 &&
+                `type Post = z.infer<typeof PostSchema>;
 // Equivale a:
 type Post = {
   title: string;
@@ -378,7 +420,8 @@ type Post = {
     readTime: number;
   };
 }`}
-{selectedExample === 2 && `type ApiResponse = z.infer<typeof ApiResponseSchema>;
+              {selectedExample === 2 &&
+                `type ApiResponse = z.infer<typeof ApiResponseSchema>;
 // Equivale a:
 type ApiResponse = {
   success: boolean;
@@ -400,7 +443,9 @@ type ApiResponse = {
         <div className="features-grid">
           <div className="feature">
             <h4>🔷 TypeScript First</h4>
-            <p>Diseñado específicamente para TypeScript con inferencia automática</p>
+            <p>
+              Diseñado específicamente para TypeScript con inferencia automática
+            </p>
           </div>
           <div className="feature">
             <h4>🪶 Zero Dependencies</h4>
@@ -420,7 +465,7 @@ type ApiResponse = {
       <div className="code-example">
         <h3>📖 Código de ejemplo:</h3>
         <pre>
-{`import { z } from "zod";
+          {`import { z } from "zod";
 
 // Definir esquema
 const UserSchema = z.object({

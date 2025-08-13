@@ -13,13 +13,13 @@ import { Doughnut, Bar, Line } from "react-chartjs-2";
 import { useState } from "react";
 
 ChartJS.register(
-  ArcElement, 
+  ArcElement,
   CategoryScale,
   LinearScale,
   BarElement,
   LineElement,
   PointElement,
-  Tooltip, 
+  Tooltip,
   Legend
 );
 
@@ -29,14 +29,9 @@ const doughnutData = {
     {
       label: "Popularidad",
       data: [45, 25, 20, 10],
-      backgroundColor: [
-        "#61dafb",
-        "#4fc08d", 
-        "#dd1b16",
-        "#ff3e00"
-      ],
+      backgroundColor: ["#61dafb", "#4fc08d", "#dd1b16", "#ff3e00"],
       borderWidth: 2,
-      borderColor: "#fff"
+      borderColor: "#fff",
     },
   ],
 };
@@ -57,7 +52,7 @@ const barData = {
       backgroundColor: "rgba(34, 197, 94, 0.8)",
       borderColor: "rgba(34, 197, 94, 1)",
       borderWidth: 1,
-    }
+    },
   ],
 };
 
@@ -70,7 +65,7 @@ const lineData = {
       fill: false,
       borderColor: "rgb(75, 192, 192)",
       backgroundColor: "rgba(75, 192, 192, 0.2)",
-      tension: 0.4
+      tension: 0.4,
     },
   ],
 };
@@ -79,25 +74,27 @@ const chartOptions = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top' as const,
+      position: "top" as const,
     },
     title: {
       display: true,
-      text: 'Datos de Ejemplo'
-    }
+      text: "Datos de Ejemplo",
+    },
   },
 };
 
 export function ChartJSExample() {
-  const [activeChart, setActiveChart] = useState<'doughnut' | 'bar' | 'line'>('doughnut');
+  const [activeChart, setActiveChart] = useState<"doughnut" | "bar" | "line">(
+    "doughnut"
+  );
 
   const renderChart = () => {
-    switch(activeChart) {
-      case 'doughnut':
+    switch (activeChart) {
+      case "doughnut":
         return <Doughnut data={doughnutData} options={chartOptions} />;
-      case 'bar':
+      case "bar":
         return <Bar data={barData} options={chartOptions} />;
-      case 'line':
+      case "line":
         return <Line data={lineData} options={chartOptions} />;
       default:
         return <Doughnut data={doughnutData} options={chartOptions} />;
@@ -108,57 +105,80 @@ export function ChartJSExample() {
     <div className="example-container">
       <div className="example-header">
         <h1>📊 Chart.js + React</h1>
-        <p>Gráficos interactivos y responsivos con Chart.js y react-chartjs-2</p>
+        <p>
+          Gráficos interactivos y responsivos con Chart.js y react-chartjs-2
+        </p>
       </div>
 
       <div className="chart-demo">
         <div className="chart-controls">
-          <button 
-            className={`chart-btn ${activeChart === 'doughnut' ? 'active' : ''}`}
-            onClick={() => setActiveChart('doughnut')}
+          <button
+            className={`chart-btn ${
+              activeChart === "doughnut" ? "active" : ""
+            }`}
+            onClick={() => setActiveChart("doughnut")}
           >
             🍩 Doughnut
           </button>
-          <button 
-            className={`chart-btn ${activeChart === 'bar' ? 'active' : ''}`}
-            onClick={() => setActiveChart('bar')}
+          <button
+            className={`chart-btn ${activeChart === "bar" ? "active" : ""}`}
+            onClick={() => setActiveChart("bar")}
           >
             📊 Barras
           </button>
-          <button 
-            className={`chart-btn ${activeChart === 'line' ? 'active' : ''}`}
-            onClick={() => setActiveChart('line')}
+          <button
+            className={`chart-btn ${activeChart === "line" ? "active" : ""}`}
+            onClick={() => setActiveChart("line")}
           >
             📈 Líneas
           </button>
         </div>
 
-        <div className="chart-container">
-          {renderChart()}
-        </div>
+        <div className="chart-container">{renderChart()}</div>
 
         <div className="chart-info">
           <h3>Información del gráfico actual:</h3>
           <ul>
-            {activeChart === 'doughnut' && (
+            {activeChart === "doughnut" && (
               <>
-                <li>🎯 <strong>Tipo:</strong> Gráfico de dona</li>
-                <li>📝 <strong>Uso:</strong> Mostrar proporciones y porcentajes</li>
-                <li>✨ <strong>Características:</strong> Interactivo, con tooltips</li>
+                <li>
+                  🎯 <strong>Tipo:</strong> Gráfico de dona
+                </li>
+                <li>
+                  📝 <strong>Uso:</strong> Mostrar proporciones y porcentajes
+                </li>
+                <li>
+                  ✨ <strong>Características:</strong> Interactivo, con tooltips
+                </li>
               </>
             )}
-            {activeChart === 'bar' && (
+            {activeChart === "bar" && (
               <>
-                <li>🎯 <strong>Tipo:</strong> Gráfico de barras</li>
-                <li>📝 <strong>Uso:</strong> Comparar valores entre categorías</li>
-                <li>✨ <strong>Características:</strong> Múltiples datasets, responsive</li>
+                <li>
+                  🎯 <strong>Tipo:</strong> Gráfico de barras
+                </li>
+                <li>
+                  📝 <strong>Uso:</strong> Comparar valores entre categorías
+                </li>
+                <li>
+                  ✨ <strong>Características:</strong> Múltiples datasets,
+                  responsive
+                </li>
               </>
             )}
-            {activeChart === 'line' && (
+            {activeChart === "line" && (
               <>
-                <li>🎯 <strong>Tipo:</strong> Gráfico de líneas</li>
-                <li>📝 <strong>Uso:</strong> Mostrar tendencias a lo largo del tiempo</li>
-                <li>✨ <strong>Características:</strong> Curvas suaves, área rellena</li>
+                <li>
+                  🎯 <strong>Tipo:</strong> Gráfico de líneas
+                </li>
+                <li>
+                  📝 <strong>Uso:</strong> Mostrar tendencias a lo largo del
+                  tiempo
+                </li>
+                <li>
+                  ✨ <strong>Características:</strong> Curvas suaves, área
+                  rellena
+                </li>
               </>
             )}
           </ul>
@@ -168,7 +188,7 @@ export function ChartJSExample() {
       <div className="code-example">
         <h3>📖 Código de ejemplo:</h3>
         <pre>
-{`import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+          {`import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);

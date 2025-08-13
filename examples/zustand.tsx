@@ -20,7 +20,7 @@ const useCounterStore = create<CounterStore>()(
       incrementBy: (value) => set((state) => ({ count: state.count + value })),
     }),
     {
-      name: 'counter-storage', // Persistir en localStorage
+      name: "counter-storage", // Persistir en localStorage
     }
   )
 );
@@ -42,8 +42,8 @@ type TodoStore = {
 
 const useTodoStore = create<TodoStore>((set) => ({
   todos: [
-    { id: '1', text: 'Aprender Zustand', completed: false },
-    { id: '2', text: 'Crear un ejemplo', completed: true },
+    { id: "1", text: "Aprender Zustand", completed: false },
+    { id: "2", text: "Crear un ejemplo", completed: true },
   ],
   addTodo: (text) =>
     set((state) => ({
@@ -79,10 +79,18 @@ function Counter() {
         <span className="count-value">{count}</span>
       </div>
       <div className="counter-controls">
-        <button onClick={decrement} className="btn btn-secondary">-1</button>
-        <button onClick={increment} className="btn btn-primary">+1</button>
-        <button onClick={() => incrementBy(5)} className="btn btn-accent">+5</button>
-        <button onClick={reset} className="btn btn-danger">Reset</button>
+        <button onClick={decrement} className="btn btn-secondary">
+          -1
+        </button>
+        <button onClick={increment} className="btn btn-primary">
+          +1
+        </button>
+        <button onClick={() => incrementBy(5)} className="btn btn-accent">
+          +5
+        </button>
+        <button onClick={reset} className="btn btn-danger">
+          Reset
+        </button>
       </div>
       <p className="counter-note">
         💾 El valor se guarda automáticamente en localStorage
@@ -93,24 +101,25 @@ function Counter() {
 
 // Componente lista de tareas
 function TodoList() {
-  const { todos, addTodo, toggleTodo, removeTodo, clearCompleted } = useTodoStore();
+  const { todos, addTodo, toggleTodo, removeTodo, clearCompleted } =
+    useTodoStore();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const text = formData.get('todo') as string;
+    const text = formData.get("todo") as string;
     if (text.trim()) {
       addTodo(text.trim());
       e.currentTarget.reset();
     }
   };
 
-  const completedCount = todos.filter(todo => todo.completed).length;
+  const completedCount = todos.filter((todo) => todo.completed).length;
 
   return (
     <div className="todo-section">
       <h3>📝 Lista de Tareas</h3>
-      
+
       <form onSubmit={handleSubmit} className="todo-form">
         <input
           name="todo"
@@ -118,7 +127,9 @@ function TodoList() {
           placeholder="Agregar nueva tarea..."
           className="todo-input"
         />
-        <button type="submit" className="btn btn-primary">➕ Agregar</button>
+        <button type="submit" className="btn btn-primary">
+          ➕ Agregar
+        </button>
       </form>
 
       <div className="todo-stats">
@@ -129,18 +140,15 @@ function TodoList() {
 
       <div className="todo-list">
         {todos.map((todo) => (
-          <div key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''}`}>
-            <button
-              onClick={() => toggleTodo(todo.id)}
-              className="todo-toggle"
-            >
-              {todo.completed ? '✅' : '⭕'}
+          <div
+            key={todo.id}
+            className={`todo-item ${todo.completed ? "completed" : ""}`}
+          >
+            <button onClick={() => toggleTodo(todo.id)} className="todo-toggle">
+              {todo.completed ? "✅" : "⭕"}
             </button>
             <span className="todo-text">{todo.text}</span>
-            <button
-              onClick={() => removeTodo(todo.id)}
-              className="todo-remove"
-            >
+            <button onClick={() => removeTodo(todo.id)} className="todo-remove">
               🗑️
             </button>
           </div>
@@ -199,7 +207,7 @@ export function ZustandExample() {
       <div className="code-example">
         <h3>📖 Código de ejemplo:</h3>
         <pre>
-{`import { create } from "zustand";
+          {`import { create } from "zustand";
 
 const useStore = create((set) => ({
   count: 0,

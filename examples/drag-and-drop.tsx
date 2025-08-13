@@ -9,7 +9,7 @@ interface Task {
 
 export default function DragAndDropExample() {
   const [newTask, setNewTask] = useState("");
-  
+
   const [ref, tasks, setTasks] = useDragAndDrop<HTMLDivElement, Task>([
     { id: "1", text: "Aprender React", completed: false },
     { id: "2", text: "Configurar TypeScript", completed: true },
@@ -22,7 +22,7 @@ export default function DragAndDropExample() {
       const task: Task = {
         id: Date.now().toString(),
         text: newTask,
-        completed: false
+        completed: false,
       };
       setTasks([...tasks, task]);
       setNewTask("");
@@ -30,20 +30,25 @@ export default function DragAndDropExample() {
   };
 
   const toggleTask = (id: string) => {
-    setTasks(tasks.map(task => 
-      task.id === id ? { ...task, completed: !task.completed } : task
-    ));
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
   };
 
   const removeTask = (id: string) => {
-    setTasks(tasks.filter(task => task.id !== id));
+    setTasks(tasks.filter((task) => task.id !== id));
   };
 
   return (
     <div className="example-container">
       <div className="example-header">
         <h1>🎯 Drag & Drop Task List</h1>
-        <p>Arrastra las tareas para reordenarlas. Usa la biblioteca @formkit/drag-and-drop</p>
+        <p>
+          Arrastra las tareas para reordenarlas. Usa la biblioteca
+          @formkit/drag-and-drop
+        </p>
       </div>
 
       <div className="drag-drop-demo">
@@ -55,7 +60,7 @@ export default function DragAndDropExample() {
               onChange={(e) => setNewTask(e.target.value)}
               placeholder="Agregar nueva tarea..."
               className="task-input"
-              onKeyPress={(e) => e.key === 'Enter' && addTask()}
+              onKeyPress={(e) => e.key === "Enter" && addTask()}
             />
             <button onClick={addTask} className="add-btn">
               ➕ Agregar
@@ -65,16 +70,16 @@ export default function DragAndDropExample() {
 
         <div className="tasks-container" ref={ref}>
           {tasks.map((task) => (
-            <div 
-              key={task.id} 
-              className={`task-item ${task.completed ? 'completed' : ''}`}
+            <div
+              key={task.id}
+              className={`task-item ${task.completed ? "completed" : ""}`}
             >
               <div className="task-content">
                 <button
                   className="check-btn"
                   onClick={() => toggleTask(task.id)}
                 >
-                  {task.completed ? '✅' : '⭕'}
+                  {task.completed ? "✅" : "⭕"}
                 </button>
                 <span className="task-text">{task.text}</span>
               </div>
@@ -93,15 +98,15 @@ export default function DragAndDropExample() {
 
         <div className="stats">
           <p>Total: {tasks.length} tareas</p>
-          <p>Completadas: {tasks.filter(t => t.completed).length}</p>
-          <p>Pendientes: {tasks.filter(t => !t.completed).length}</p>
+          <p>Completadas: {tasks.filter((t) => t.completed).length}</p>
+          <p>Pendientes: {tasks.filter((t) => !t.completed).length}</p>
         </div>
       </div>
 
       <div className="code-example">
         <h3>📖 Código de ejemplo:</h3>
         <pre>
-{`import { useDragAndDrop } from "@formkit/drag-and-drop/react";
+          {`import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 
 const [ref, items, setItems] = useDragAndDrop([
   { id: "1", text: "Tarea 1" },

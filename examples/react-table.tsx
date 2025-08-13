@@ -23,14 +23,78 @@ interface Person {
 
 // Datos de ejemplo más completos
 const sampleData: Person[] = [
-  { id: 1, name: "Ana García", age: 28, email: "ana@company.com", department: "Engineering", salary: 75000, status: "active" },
-  { id: 2, name: "Carlos López", age: 34, email: "carlos@company.com", department: "Marketing", salary: 65000, status: "active" },
-  { id: 3, name: "María Rodríguez", age: 29, email: "maria@company.com", department: "Design", salary: 70000, status: "inactive" },
-  { id: 4, name: "Juan Pérez", age: 42, email: "juan@company.com", department: "Engineering", salary: 95000, status: "active" },
-  { id: 5, name: "Laura Martín", age: 31, email: "laura@company.com", department: "HR", salary: 60000, status: "active" },
-  { id: 6, name: "David Silva", age: 26, email: "david@company.com", department: "Marketing", salary: 55000, status: "inactive" },
-  { id: 7, name: "Elena Torres", age: 38, email: "elena@company.com", department: "Engineering", salary: 85000, status: "active" },
-  { id: 8, name: "Miguel Santos", age: 33, email: "miguel@company.com", department: "Design", salary: 72000, status: "active" },
+  {
+    id: 1,
+    name: "Ana García",
+    age: 28,
+    email: "ana@company.com",
+    department: "Engineering",
+    salary: 75000,
+    status: "active",
+  },
+  {
+    id: 2,
+    name: "Carlos López",
+    age: 34,
+    email: "carlos@company.com",
+    department: "Marketing",
+    salary: 65000,
+    status: "active",
+  },
+  {
+    id: 3,
+    name: "María Rodríguez",
+    age: 29,
+    email: "maria@company.com",
+    department: "Design",
+    salary: 70000,
+    status: "inactive",
+  },
+  {
+    id: 4,
+    name: "Juan Pérez",
+    age: 42,
+    email: "juan@company.com",
+    department: "Engineering",
+    salary: 95000,
+    status: "active",
+  },
+  {
+    id: 5,
+    name: "Laura Martín",
+    age: 31,
+    email: "laura@company.com",
+    department: "HR",
+    salary: 60000,
+    status: "active",
+  },
+  {
+    id: 6,
+    name: "David Silva",
+    age: 26,
+    email: "david@company.com",
+    department: "Marketing",
+    salary: 55000,
+    status: "inactive",
+  },
+  {
+    id: 7,
+    name: "Elena Torres",
+    age: 38,
+    email: "elena@company.com",
+    department: "Engineering",
+    salary: 85000,
+    status: "active",
+  },
+  {
+    id: 8,
+    name: "Miguel Santos",
+    age: 33,
+    email: "miguel@company.com",
+    department: "Design",
+    salary: 72000,
+    status: "active",
+  },
 ];
 
 const columns: ColumnDef<Person>[] = [
@@ -46,7 +110,9 @@ const columns: ColumnDef<Person>[] = [
   {
     accessorKey: "age",
     header: "🎂 Edad",
-    cell: ({ row }) => <span className="table-cell-age">{row.getValue("age")} años</span>,
+    cell: ({ row }) => (
+      <span className="table-cell-age">{row.getValue("age")} años</span>
+    ),
   },
   {
     accessorKey: "email",
@@ -61,7 +127,11 @@ const columns: ColumnDef<Person>[] = [
     accessorKey: "department",
     header: "🏢 Departamento",
     cell: ({ row }) => (
-      <span className={`table-cell-department department-${(row.getValue("department") as string).toLowerCase()}`}>
+      <span
+        className={`table-cell-department department-${(
+          row.getValue("department") as string
+        ).toLowerCase()}`}
+      >
         {row.getValue("department")}
       </span>
     ),
@@ -131,12 +201,17 @@ export function ReactTableExample() {
               className="global-filter"
             />
           </div>
-          
+
           <div className="filter-controls">
             <select
-              value={(table.getColumn("department")?.getFilterValue() as string) ?? ""}
+              value={
+                (table.getColumn("department")?.getFilterValue() as string) ??
+                ""
+              }
               onChange={(e) =>
-                table.getColumn("department")?.setFilterValue(e.target.value || undefined)
+                table
+                  .getColumn("department")
+                  ?.setFilterValue(e.target.value || undefined)
               }
               className="department-filter"
             >
@@ -148,9 +223,13 @@ export function ReactTableExample() {
             </select>
 
             <select
-              value={(table.getColumn("status")?.getFilterValue() as string) ?? ""}
+              value={
+                (table.getColumn("status")?.getFilterValue() as string) ?? ""
+              }
               onChange={(e) =>
-                table.getColumn("status")?.setFilterValue(e.target.value || undefined)
+                table
+                  .getColumn("status")
+                  ?.setFilterValue(e.target.value || undefined)
               }
               className="status-filter"
             >
@@ -196,7 +275,10 @@ export function ReactTableExample() {
                 <tr key={row.id} className="table-row">
                   {row.getVisibleCells().map((cell) => (
                     <td key={cell.id} className="table-cell">
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </td>
                   ))}
                 </tr>
@@ -210,10 +292,11 @@ export function ReactTableExample() {
           <div className="pagination-info">
             <span>
               Página {table.getState().pagination.pageIndex + 1} de{" "}
-              {table.getPageCount()} ({table.getFilteredRowModel().rows.length} registros)
+              {table.getPageCount()} ({table.getFilteredRowModel().rows.length}{" "}
+              registros)
             </span>
           </div>
-          
+
           <div className="pagination-buttons">
             <button
               onClick={() => table.setPageIndex(0)}
@@ -284,7 +367,7 @@ export function ReactTableExample() {
       <div className="code-example">
         <h3>📖 Código de ejemplo:</h3>
         <pre>
-{`import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
+          {`import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
 
 const columns = [
   { accessorKey: "name", header: "Nombre" },

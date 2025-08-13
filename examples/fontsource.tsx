@@ -10,45 +10,56 @@ const fontExamples = [
     family: "Roboto, sans-serif",
     description: "Fuente moderna y legible de Google",
     weights: ["300", "400", "500", "700"],
-    category: "Sans Serif"
+    category: "Sans Serif",
   },
   {
     name: "Arial",
-    family: "Arial, sans-serif", 
+    family: "Arial, sans-serif",
     description: "Fuente clásica disponible en todos los sistemas",
     weights: ["400", "700"],
-    category: "Sans Serif"
+    category: "Sans Serif",
   },
   {
     name: "Georgia",
     family: "Georgia, serif",
     description: "Fuente serif optimizada para pantalla",
     weights: ["400", "700"],
-    category: "Serif"
+    category: "Serif",
   },
   {
     name: "Courier New",
     family: "Courier New, monospace",
     description: "Fuente monospace clásica para código",
     weights: ["400"],
-    category: "Monospace"
-  }
+    category: "Monospace",
+  },
 ];
 
 const sampleTexts = {
-  paragraph: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  paragraph:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   title: "El Zorro Veloz Salta Sobre el Perro Perezoso",
   code: "const greeting = 'Hello World!';\nconsole.log(greeting);",
-  numbers: "0123456789 + - = * / () [] {}"
+  numbers: "0123456789 + - = * / () [] {}",
 };
 
-function FontDemo({ font, selectedText }: { font: typeof fontExamples[0], selectedText: string }) {
+function FontDemo({
+  font,
+  selectedText,
+}: {
+  font: (typeof fontExamples)[0];
+  selectedText: string;
+}) {
   const getText = () => {
-    switch(selectedText) {
-      case 'title': return sampleTexts.title;
-      case 'code': return sampleTexts.code;
-      case 'numbers': return sampleTexts.numbers;
-      default: return sampleTexts.paragraph;
+    switch (selectedText) {
+      case "title":
+        return sampleTexts.title;
+      case "code":
+        return sampleTexts.code;
+      case "numbers":
+        return sampleTexts.numbers;
+      default:
+        return sampleTexts.paragraph;
     }
   };
 
@@ -59,18 +70,20 @@ function FontDemo({ font, selectedText }: { font: typeof fontExamples[0], select
         <span className="font-category">{font.category}</span>
       </div>
       <p className="font-description">{font.description}</p>
-      
+
       <div className="font-weights">
         <strong>Pesos disponibles:</strong>
         <div className="weight-tags">
-          {font.weights.map(weight => (
-            <span key={weight} className="weight-tag">{weight}</span>
+          {font.weights.map((weight) => (
+            <span key={weight} className="weight-tag">
+              {weight}
+            </span>
           ))}
         </div>
       </div>
 
       <div className="font-sample" style={{ fontFamily: font.family }}>
-        {selectedText === 'code' ? (
+        {selectedText === "code" ? (
           <pre style={{ fontFamily: font.family }}>{getText()}</pre>
         ) : (
           <div style={{ fontFamily: font.family }}>{getText()}</div>
@@ -78,13 +91,13 @@ function FontDemo({ font, selectedText }: { font: typeof fontExamples[0], select
       </div>
 
       <div className="font-weights-demo">
-        {font.weights.map(weight => (
-          <div 
+        {font.weights.map((weight) => (
+          <div
             key={weight}
             className="weight-example"
-            style={{ 
-              fontFamily: font.family, 
-              fontWeight: weight 
+            style={{
+              fontFamily: font.family,
+              fontWeight: weight,
             }}
           >
             Weight {weight}: The quick brown fox jumps over the lazy dog
@@ -111,27 +124,35 @@ export default function FontsourceExample() {
           <div className="text-controls">
             <h3>📝 Tipo de texto:</h3>
             <div className="text-buttons">
-              <button 
-                className={`btn ${selectedText === 'paragraph' ? 'btn-primary' : 'btn-secondary'}`}
-                onClick={() => setSelectedText('paragraph')}
+              <button
+                className={`btn ${
+                  selectedText === "paragraph" ? "btn-primary" : "btn-secondary"
+                }`}
+                onClick={() => setSelectedText("paragraph")}
               >
                 📄 Párrafo
               </button>
-              <button 
-                className={`btn ${selectedText === 'title' ? 'btn-primary' : 'btn-secondary'}`}
-                onClick={() => setSelectedText('title')}
+              <button
+                className={`btn ${
+                  selectedText === "title" ? "btn-primary" : "btn-secondary"
+                }`}
+                onClick={() => setSelectedText("title")}
               >
                 📰 Título
               </button>
-              <button 
-                className={`btn ${selectedText === 'code' ? 'btn-primary' : 'btn-secondary'}`}
-                onClick={() => setSelectedText('code')}
+              <button
+                className={`btn ${
+                  selectedText === "code" ? "btn-primary" : "btn-secondary"
+                }`}
+                onClick={() => setSelectedText("code")}
               >
                 💻 Código
               </button>
-              <button 
-                className={`btn ${selectedText === 'numbers' ? 'btn-primary' : 'btn-secondary'}`}
-                onClick={() => setSelectedText('numbers')}
+              <button
+                className={`btn ${
+                  selectedText === "numbers" ? "btn-primary" : "btn-secondary"
+                }`}
+                onClick={() => setSelectedText("numbers")}
               >
                 🔢 Números
               </button>
@@ -141,16 +162,20 @@ export default function FontsourceExample() {
           <div className="font-filter">
             <h3>🎯 Filtrar por fuente:</h3>
             <div className="font-buttons">
-              <button 
-                className={`btn ${selectedFont === null ? 'btn-primary' : 'btn-secondary'}`}
+              <button
+                className={`btn ${
+                  selectedFont === null ? "btn-primary" : "btn-secondary"
+                }`}
                 onClick={() => setSelectedFont(null)}
               >
                 📋 Todas
               </button>
-              {fontExamples.map(font => (
-                <button 
+              {fontExamples.map((font) => (
+                <button
                   key={font.name}
-                  className={`btn ${selectedFont === font.name ? 'btn-primary' : 'btn-secondary'}`}
+                  className={`btn ${
+                    selectedFont === font.name ? "btn-primary" : "btn-secondary"
+                  }`}
                   onClick={() => setSelectedFont(font.name)}
                 >
                   {font.name}
@@ -162,24 +187,21 @@ export default function FontsourceExample() {
 
         <div className="fonts-grid">
           {fontExamples
-            .filter(font => selectedFont === null || font.name === selectedFont)
+            .filter(
+              (font) => selectedFont === null || font.name === selectedFont
+            )
             .map((font, index) => (
-              <FontDemo 
-                key={index} 
-                font={font} 
-                selectedText={selectedText}
-              />
-            ))
-          }
+              <FontDemo key={index} font={font} selectedText={selectedText} />
+            ))}
         </div>
 
         <div className="comparison-section">
           <h3>📊 Comparación lado a lado:</h3>
           <div className="comparison-grid">
-            {fontExamples.map(font => (
+            {fontExamples.map((font) => (
               <div key={font.name} className="comparison-item">
                 <h4>{font.name}</h4>
-                <div 
+                <div
                   className="comparison-text"
                   style={{ fontFamily: font.family }}
                 >
@@ -237,7 +259,7 @@ import "@fontsource/roboto/700.css";`}</pre>
       <div className="code-example">
         <h3>📖 Código de ejemplo:</h3>
         <pre>
-{`// 1. Instalar fuente
+          {`// 1. Instalar fuente
 npm install @fontsource/roboto
 
 // 2. Importar en tu componente
