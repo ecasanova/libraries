@@ -119,6 +119,20 @@ export default function FontsourceExample() {
         <p>Fuentes web auto-hospedadas para proyectos npm</p>
       </div>
 
+      <div className="installation-section">
+        <h3>📦 Instalación</h3>
+        <div className="installation-code">
+          <pre>
+            <code>{`npm install @fontsource/roboto
+# O cualquier otra fuente específica
+npm install @fontsource/inter`}</code>
+          </pre>
+        </div>
+        <p className="installation-note">
+          Fontsource permite auto-hospedar fuentes de Google Fonts en tu proyecto npm.
+        </p>
+      </div>
+
       <div className="fontsource-demo">
         <div className="demo-controls">
           <div className="text-controls">
