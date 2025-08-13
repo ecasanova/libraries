@@ -259,6 +259,11 @@ body {
 
 .features-section {
   text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
 }
 
 .features-section h2 {
@@ -2474,6 +2479,14 @@ body {
   
   .features-list {
     grid-template-columns: 1fr;
+  }
+  
+  .features-section {
+    padding: 1rem;
+  }
+  
+  .feature-item {
+    padding: 1.5rem;
   }
   
   /* Fontsource responsive */
