@@ -225,7 +225,8 @@ export default function DayjsExample() {
           </pre>
         </div>
         <p className="installation-note">
-          Day.js es una alternativa minimalista a Moment.js con API similar pero solo 2kB.
+          Day.js es una alternativa minimalista a Moment.js con API similar pero
+          solo 2kB.
         </p>
       </div>
 

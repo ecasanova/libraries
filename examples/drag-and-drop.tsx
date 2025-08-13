@@ -59,7 +59,8 @@ export default function DragAndDropExample() {
           </pre>
         </div>
         <p className="installation-note">
-          FormKit Drag and Drop es una biblioteca liviana y flexible para funcionalidad drag & drop.
+          FormKit Drag and Drop es una biblioteca liviana y flexible para
+          funcionalidad drag & drop.
         </p>
       </div>
 

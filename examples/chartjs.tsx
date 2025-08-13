@@ -118,7 +118,8 @@ export function ChartJSExample() {
           </pre>
         </div>
         <p className="installation-note">
-          Chart.js es una biblioteca poderosa para crear gráficos HTML5 responsivos y animados.
+          Chart.js es una biblioteca poderosa para crear gráficos HTML5
+          responsivos y animados.
         </p>
       </div>
 

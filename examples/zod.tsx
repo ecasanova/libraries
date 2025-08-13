@@ -201,7 +201,8 @@ export default function ZodExample() {
           </pre>
         </div>
         <p className="installation-note">
-          Zod es una biblioteca de validación de esquemas TypeScript-first con inferencia de tipos estática.
+          Zod es una biblioteca de validación de esquemas TypeScript-first con
+          inferencia de tipos estática.
         </p>
       </div>
 

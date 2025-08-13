@@ -163,7 +163,8 @@ export default function HotkeysExample() {
           </pre>
         </div>
         <p className="installation-note">
-          Hotkeys.js es una biblioteca robusta para manejar atajos de teclado en aplicaciones web.
+          Hotkeys.js es una biblioteca robusta para manejar atajos de teclado en
+          aplicaciones web.
         </p>
       </div>
 

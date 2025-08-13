@@ -183,7 +183,8 @@ export function ZustandExample() {
           </pre>
         </div>
         <p className="installation-note">
-          Zustand es una solución de gestión de estado pequeña, rápida y escalable.
+          Zustand es una solución de gestión de estado pequeña, rápida y
+          escalable.
         </p>
       </div>
 

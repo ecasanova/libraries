@@ -198,7 +198,8 @@ export function ReactTableExample() {
           </pre>
         </div>
         <p className="installation-note">
-          TanStack Table es una biblioteca headless para construir tablas poderosas y flexibles.
+          TanStack Table es una biblioteca headless para construir tablas
+          poderosas y flexibles.
         </p>
       </div>
 

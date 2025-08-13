@@ -129,7 +129,8 @@ npm install @fontsource/inter`}</code>
           </pre>
         </div>
         <p className="installation-note">
-          Fontsource permite auto-hospedar fuentes de Google Fonts en tu proyecto npm.
+          Fontsource permite auto-hospedar fuentes de Google Fonts en tu
+          proyecto npm.
         </p>
       </div>
 

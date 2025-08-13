@@ -151,7 +151,8 @@ export default function FramerMotionExample() {
           </pre>
         </div>
         <p className="installation-note">
-          Framer Motion es una biblioteca de animación lista para producción para React.
+          Framer Motion es una biblioteca de animación lista para producción
+          para React.
         </p>
       </div>
 
