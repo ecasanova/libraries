@@ -155,6 +155,18 @@ export default function HotkeysExample() {
         <p>Atajos de teclado poderosos y flexibles para aplicaciones web</p>
       </div>
 
+      <div className="installation-section">
+        <h3>📦 Instalación</h3>
+        <div className="installation-code">
+          <pre>
+            <code>{`npm install hotkeys-js`}</code>
+          </pre>
+        </div>
+        <p className="installation-note">
+          Hotkeys.js es una biblioteca robusta para manejar atajos de teclado en aplicaciones web.
+        </p>
+      </div>
+
       {/* Notificaciones */}
       <div className="notifications-container">
         {notifications.map((notification, index) => (

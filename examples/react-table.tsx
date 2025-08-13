@@ -190,6 +190,18 @@ export function ReactTableExample() {
         <p>Tabla potente con ordenamiento, filtrado, paginación y más</p>
       </div>
 
+      <div className="installation-section">
+        <h3>📦 Instalación</h3>
+        <div className="installation-code">
+          <pre>
+            <code>{`npm install @tanstack/react-table`}</code>
+          </pre>
+        </div>
+        <p className="installation-note">
+          TanStack Table es una biblioteca headless para construir tablas poderosas y flexibles.
+        </p>
+      </div>
+
       <div className="table-demo">
         {/* Controles de filtrado */}
         <div className="table-controls">

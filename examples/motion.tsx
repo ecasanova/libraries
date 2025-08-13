@@ -143,6 +143,18 @@ export default function FramerMotionExample() {
         <p>Animaciones fluidas y gestos interactivos para React</p>
       </div>
 
+      <div className="installation-section">
+        <h3>📦 Instalación</h3>
+        <div className="installation-code">
+          <pre>
+            <code>{`npm install framer-motion`}</code>
+          </pre>
+        </div>
+        <p className="installation-note">
+          Framer Motion es una biblioteca de animación lista para producción para React.
+        </p>
+      </div>
+
       <div className="motion-demo">
         {/* Demo de animaciones básicas */}
         <section className="demo-section">
