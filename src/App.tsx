@@ -214,7 +214,7 @@ export default function App() {
             </a>
           </p>
           <p>
-            Bibliotecas recomendadas por{" "}
+            📚 Bibliotecas recomendadas por{" "}
             <a
               href="https://github.com/midudev"
               target="_blank"
@@ -225,7 +225,7 @@ export default function App() {
             </a>
           </p>
           <p>
-            Código fuente disponible en{" "}
+            📂 Código fuente disponible en{" "}
             <a
               href="https://github.com/ecasanova/libraries"
               target="_blank"
