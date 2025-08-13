@@ -40,17 +40,28 @@ export default function App() {
 
   return (
     <>
-      <header>
-        <nav>
-          <a href="#">Inicio</a>
-          {examples.map((e) => (
-            <a key={e.slug} href={`#${e.slug}`}>
-              {e.label}
+      <header className="header">
+        <nav className="navbar">
+          <div className="nav-container">
+            <a href="#" className="nav-brand">
+              React Libraries
             </a>
-          ))}
+            <div className="nav-links">
+              <a href="#" className="nav-link">
+                Inicio
+              </a>
+              {examples.map((e) => (
+                <a key={e.slug} href={`#${e.slug}`} className="nav-link">
+                  {e.label}
+                </a>
+              ))}
+            </div>
+          </div>
         </nav>
       </header>
-      <main>{current ? current.element : <h1>React Libraries Examples</h1>}</main>
+      <main className="main-content">
+        {current ? current.element : <h1>React Libraries Examples</h1>}
+      </main>
     </>
   );
 }
