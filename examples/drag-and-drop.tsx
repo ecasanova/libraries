@@ -1,19 +1,13 @@
-import { dragAndDrop } from "@formkit/drag-and-drop";
-import { useEffect, useRef } from "react";
+import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 
 export default function Lista() {
-  const ref = useRef<HTMLUListElement | null>(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      dragAndDrop(ref.current);
-    }
-  }, []);
+  const [ref, items] = useDragAndDrop(["Elemento 1", "Elemento 2"]);
 
   return (
     <ul ref={ref}>
-      <li>Elemento 1</li>
-      <li>Elemento 2</li>
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
     </ul>
   );
 }
