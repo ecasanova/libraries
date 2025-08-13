@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import AuthExample from "../examples/auth";
 import { ChartJSExample } from "../examples/chartjs";
 import DragAndDropExample from "../examples/drag-and-drop";
 import FontsourceExample from "../examples/fontsource";
@@ -11,7 +10,6 @@ import DayjsExample from "../examples/dayjs";
 import ZodExample from "../examples/zod";
 
 const examples = [
-  { slug: "auth", label: "Auth.js", element: <AuthExample /> },
   { slug: "chartjs", label: "ChartJS", element: <ChartJSExample /> },
   {
     slug: "drag-and-drop",

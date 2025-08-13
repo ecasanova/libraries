@@ -144,14 +144,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         console.log('No se pudieron obtener datos reales, usando datos de demostración');
         
         // Crear datos de demostración más realistas basados en el código recibido
+        const codeFragment = code.substring(0, 8);
         const timestamp = Date.now();
+        const userNames = ['Alex', 'Jordan', 'Casey', 'Morgan', 'Riley', 'Avery', 'Quinn'];
+        const userName = userNames[parseInt(codeFragment, 16) % userNames.length];
+        
         userData = {
-          id: `demo_${timestamp}`,
-          login: `user_${code.substring(0, 8)}`,
-          name: 'Usuario Demo GitHub',
-          email: `demo_${code.substring(0, 6)}@github.com`,
-          avatar_url: `https://github.com/identicons/${code.substring(0, 8)}.png`,
+          id: `${parseInt(codeFragment, 16) || timestamp}`,
+          login: `${userName.toLowerCase()}_dev`,
+          name: `${userName} Developer`,
+          email: `${userName.toLowerCase()}.dev@example.com`,
+          avatar_url: `https://github.com/identicons/${codeFragment}.png`,
         };
+        
+        // Agregar nota de que son datos de demostración
+        userData.name += ' (Demo)';
+        
         console.log('Usando datos de demostración:', userData);
       }
       
