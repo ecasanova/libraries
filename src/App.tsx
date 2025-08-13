@@ -119,6 +119,7 @@ export default function App() {
   const [example, setExample] = useState<string>(
     window.location.hash.replace("#", "")
   );
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handler = () => setExample(window.location.hash.replace("#", ""));
@@ -128,26 +129,52 @@ export default function App() {
 
   const current = examples.find((e) => e.slug === example);
 
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <>
       <header className="header">
         <nav className="navbar">
           <div className="nav-container">
-            <a href="#" className="nav-brand">
+            <a href="#" className="nav-brand" onClick={handleLinkClick}>
               React Libraries
             </a>
-            <div className="nav-links">
+            
+            {/* Botón hamburguesa */}
+            <button 
+              className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+
+            {/* Navigation Links */}
+            <div className={`nav-links ${mobileMenuOpen ? 'nav-links-mobile open' : 'nav-links-desktop'}`}>
               {examples.map((e) => (
                 <a 
                   key={e.slug} 
                   href={`#${e.slug}`} 
                   className={`nav-link ${example === e.slug ? 'active' : ''}`}
+                  onClick={handleLinkClick}
                 >
                   {e.label}
                 </a>
               ))}
             </div>
           </div>
+          
+          {/* Overlay para cerrar el menú móvil */}
+          {mobileMenuOpen && (
+            <div 
+              className="mobile-overlay" 
+              onClick={() => setMobileMenuOpen(false)}
+            ></div>
+          )}
         </nav>
       </header>
       <main className="main-content">
