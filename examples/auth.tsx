@@ -1,18 +1,9 @@
-import { signIn, signOut, useSession, SessionProvider } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { AuthProvider, useAuth } from "../src/lib/auth-context";
 
 function AuthButton() {
-  const { data: session, status } = useSession();
-  const [isConfigured, setIsConfigured] = useState(false);
+  const { user, isLoading, isAuthenticated, signIn, signOut } = useAuth();
 
-  useEffect(() => {
-    // Verificar si las variables de entorno están configuradas
-    const hasGitHubConfig =
-      process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET;
-    setIsConfigured(!!hasGitHubConfig);
-  }, []);
-
-  if (status === "loading") {
+  if (isLoading) {
     return (
       <div className="auth-status">
         <div className="user-info">
@@ -22,7 +13,8 @@ function AuthButton() {
     );
   }
 
-  if (!isConfigured) {
+  const clientId = import.meta.env.VITE_GITHUB_CLIENT_ID;
+  if (!clientId || clientId === "your-github-client-id") {
     return (
       <div className="auth-status">
         <div className="user-info">
@@ -34,7 +26,7 @@ function AuthButton() {
           <p>Para usar la autenticación, necesitas:</p>
           <ol>
             <li>Crear una GitHub OAuth App</li>
-            <li>Configurar las variables de entorno</li>
+            <li>Configurar VITE_GITHUB_CLIENT_ID en .env</li>
             <li>Reiniciar el servidor</li>
           </ol>
         </div>
@@ -42,25 +34,27 @@ function AuthButton() {
     );
   }
 
-  if (session) {
+  if (isAuthenticated && user) {
     return (
       <div className="auth-status">
         <div className="user-info">
-          {session.user?.image && (
-            <img
-              src={session.user.image}
-              alt="Avatar"
-              className="user-avatar"
-            />
-          )}
+          <img src={user.avatar_url} alt="Avatar" className="user-avatar" />
           <span className="user-email">
-            {session.user?.email || session.user?.name || "Usuario autenticado"}
+            {user.email || user.name || user.login}
           </span>
           <span className="status-badge authenticated">
             ✓ Autenticado con GitHub
           </span>
         </div>
-        <button className="auth-button logout-button" onClick={() => signOut()}>
+        <div className="user-details">
+          <p>
+            <strong>Usuario:</strong> @{user.login}
+          </p>
+          <p>
+            <strong>ID:</strong> {user.id}
+          </p>
+        </div>
+        <button className="auth-button logout-button" onClick={signOut}>
           Cerrar sesión
         </button>
       </div>
@@ -72,10 +66,7 @@ function AuthButton() {
       <div className="user-info">
         <span className="status-badge unauthenticated">✗ No autenticado</span>
       </div>
-      <button
-        className="auth-button login-button"
-        onClick={() => signIn("github")}
-      >
+      <button className="auth-button login-button" onClick={signIn}>
         <svg className="github-icon" viewBox="0 0 24 24" width="20" height="20">
           <path
             fill="currentColor"
@@ -87,32 +78,34 @@ function AuthButton() {
     </div>
   );
 }
-
-// Wrapper que incluye el SessionProvider
+// Wrapper que incluye el AuthProvider personalizado
 export default function AuthExample() {
   return (
-    <SessionProvider>
+    <AuthProvider>
       <div className="example-header">
-        <h2>Auth.js (NextAuth.js)</h2>
-        <p>Autenticación de usuarios con GitHub OAuth</p>
+        <h2>🔐 GitHub OAuth</h2>
+        <p>Autenticación personalizada con GitHub OAuth (sin NextAuth.js)</p>
       </div>
 
       <div className="installation-section">
-        <h3>📦 Instalación</h3>
+        <h3>📦 Configuración</h3>
         <div className="installation-code">
           <pre>
-            <code>npm install next-auth</code>
+            <code>
+              # Agregar al archivo .env{"\n"}
+              VITE_GITHUB_CLIENT_ID=tu-client-id-aqui
+            </code>
           </pre>
         </div>
       </div>
 
       <div className="auth-demo">
-        <h3>🔐 Demo de Autenticación</h3>
+        <h3>🚀 Demo de Autenticación</h3>
         <div className="demo-content">
           <AuthButton />
 
           <div className="auth-setup-guide">
-            <h4>🚀 Configuración para GitHub OAuth:</h4>
+            <h4>🛠️ Configuración para GitHub OAuth:</h4>
             <div className="setup-steps">
               <div className="setup-step">
                 <h5>1. Crear GitHub OAuth App</h5>
@@ -131,27 +124,23 @@ export default function AuthExample() {
                     <strong>Application name:</strong> Mi App React
                   </li>
                   <li>
-                    <strong>Homepage URL:</strong> http://localhost:5174
+                    <strong>Homepage URL:</strong> {window.location.origin}
                   </li>
                   <li>
                     <strong>Authorization callback URL:</strong>{" "}
-                    http://localhost:5174/api/auth/callback/github
+                    {window.location.origin}/auth/callback
                   </li>
                 </ul>
               </div>
 
               <div className="setup-step">
-                <h5>2. Configurar variables de entorno</h5>
+                <h5>2. Configurar variable de entorno</h5>
                 <p>
-                  Copia el Client ID y Client Secret de tu GitHub App y
-                  agrégalos al archivo <code>.env</code>:
+                  Agrega tu GitHub Client ID al archivo <code>.env</code>:
                 </p>
                 <div className="env-example">
                   <pre>
-                    <code>{`NEXTAUTH_URL=http://localhost:5174
-NEXTAUTH_SECRET=tu-secreto-super-seguro-aqui
-GITHUB_CLIENT_ID=tu-github-client-id
-GITHUB_CLIENT_SECRET=tu-github-client-secret`}</code>
+                    <code>VITE_GITHUB_CLIENT_ID=tu-client-id-de-github</code>
                   </pre>
                 </div>
               </div>
@@ -169,28 +158,32 @@ GITHUB_CLIENT_SECRET=tu-github-client-secret`}</code>
       </div>
 
       <div className="auth-features">
-        <h3>✨ Características principales</h3>
+        <h3>✨ Características de esta implementación</h3>
         <div className="features-grid">
           <div className="feature-item">
-            <h4>🔐 Múltiples proveedores</h4>
-            <p>GitHub, Google, Discord, Auth0, y más de 50 proveedores OAuth</p>
-          </div>
-          <div className="feature-item">
-            <h4>🛡️ Seguro por defecto</h4>
-            <p>JWT, bases de datos, CSRF protection, secure cookies</p>
-          </div>
-          <div className="feature-item">
-            <h4>🎨 Personalizable</h4>
-            <p>Páginas de login personalizadas, callbacks, y hooks</p>
-          </div>
-          <div className="feature-item">
-            <h4>📱 Universal</h4>
+            <h4>🎯 Simple y directo</h4>
             <p>
-              Compatible con Next.js, React, Svelte, y aplicaciones serverless
+              Implementación nativa sin dependencias pesadas como NextAuth.js
             </p>
+          </div>
+          <div className="feature-item">
+            <h4>🔒 Seguro</h4>
+            <p>Usa el flujo OAuth 2.0 estándar de GitHub con state parameter</p>
+          </div>
+          <div className="feature-item">
+            <h4>💾 Persistente</h4>
+            <p>
+              Guarda la sesión en localStorage para mantener el login entre
+              recargas
+            </p>
+          </div>
+          <div className="feature-item">
+            <h4>⚡ Compatible con Vite</h4>
+            <p>Diseñado específicamente para aplicaciones React + Vite</p>
           </div>
         </div>
       </div>
-    </SessionProvider>
+    </AuthProvider>
   );
 }
+import { useEffect, useState } from "react";

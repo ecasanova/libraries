@@ -2894,16 +2894,29 @@ body {
 }
 
 .setup-step code {
-  background: #f3f4f6;
+  color: #fff;
   padding: 0.125rem 0.25rem;
   border-radius: 3px;
   font-family: 'Fira Code', monospace;
   font-size: 0.875rem;
-  color: #374151;
 }
 
 .env-example {
   margin-top: 0.75rem;
+}
+
+.user-details {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.user-details p {
+  margin: 0.25rem 0;
+  color: #6b7280;
+  font-size: 0.9rem;
 }
 
 .env-example pre {
