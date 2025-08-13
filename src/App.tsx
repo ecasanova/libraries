@@ -153,6 +153,32 @@ export default function App() {
       <main className="main-content">
         {current ? current.element : <HomePage />}
       </main>
+      <footer className="footer">
+        <div className="footer-content">
+          <p>
+            ✨ Creado con ❤️ por{" "}
+            <a 
+              href="https://github.com/ecasanova" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              Enrique Casanova
+            </a>
+          </p>
+          <p>
+            📂 Código fuente disponible en{" "}
+            <a 
+              href="https://github.com/ecasanova/libraries" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              GitHub
+            </a>
+          </p>
+        </div>
+      </footer>
     </>
   );
 }
