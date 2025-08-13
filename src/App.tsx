@@ -57,6 +57,17 @@ function HomePage() {
             populares del ecosistema React. Cada ejemplo incluye código,
             documentación y casos de uso prácticos.
           </p>
+          <p className="recommendation-note">
+            📚 Bibliotecas recomendadas por{" "}
+            <a
+              href="https://github.com/midudev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="recommendation-link"
+            >
+              midudev
+            </a>
+          </p>
         </div>
       </div>
 
@@ -203,7 +214,18 @@ export default function App() {
             </a>
           </p>
           <p>
-            📂 Código fuente disponible en{" "}
+            � Bibliotecas recomendadas por{" "}
+            <a
+              href="https://github.com/midudev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              midudev
+            </a>
+          </p>
+          <p>
+            �📂 Código fuente disponible en{" "}
             <a
               href="https://github.com/ecasanova/libraries"
               target="_blank"
