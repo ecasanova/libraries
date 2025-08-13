@@ -30,13 +30,7 @@ const GITHUB_CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
 
 // Función para obtener la URL de redirección correcta
 const getRedirectUri = () => {
-  // Si estamos en el ejemplo de Auth, redirigir de vuelta a él
-  if (
-    window.location.pathname.includes("auth") ||
-    window.location.hash.includes("auth")
-  ) {
-    return `${window.location.origin}${window.location.pathname}${window.location.hash}`;
-  }
+  // URL de redirección fija para evitar problemas de configuración
   return `${window.location.origin}/`;
 };
 

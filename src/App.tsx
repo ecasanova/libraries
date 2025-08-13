@@ -8,6 +8,7 @@ import { Tabla } from "../examples/react-table";
 import { ZustandExample } from "../examples/zustand";
 import DayjsExample from "../examples/dayjs";
 import ZodExample from "../examples/zod";
+import AuthExample from "../examples/auth";
 
 const examples = [
   { slug: "chartjs", label: "ChartJS", element: <ChartJSExample /> },
@@ -144,6 +145,14 @@ export default function App() {
   }, []);
 
   const current = examples.find((e) => e.slug === example);
+  
+  // Manejar caso especial para auth (no en navegación pero accesible)
+  const renderContent = () => {
+    if (example === "auth") {
+      return <AuthExample />;
+    }
+    return current ? current.element : <HomePage />;
+  };
 
   const handleLinkClick = () => {
     setMobileMenuOpen(false);
@@ -198,7 +207,7 @@ export default function App() {
         </nav>
       </header>
       <main className="main-content">
-        {current ? current.element : <HomePage />}
+        {renderContent()}
       </main>
       <footer className="footer">
         <div className="footer-content">
