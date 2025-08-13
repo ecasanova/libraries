@@ -2802,14 +2802,15 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  margin-bottom: 0.5rem;
+  margin: 0 auto 0.5rem auto;
+  display: block;
 }
 
 .avatar-container {
   position: relative;
   width: 48px;
   height: 48px;
-  margin-bottom: 0.5rem;
+  margin: 0 auto 0.5rem auto;
 }
 
 .avatar-placeholder {

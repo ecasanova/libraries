@@ -35,29 +35,28 @@ function AuthButton() {
   }
 
   if (isAuthenticated && user) {
-    const isDemo = user.name?.includes('(Demo)') || user.id?.toString().startsWith('demo_');
-    
+    const isDemo =
+      user.name?.includes("(Demo)") || user.id?.toString().startsWith("demo_");
+
     return (
       <div className="auth-status">
-        {isDemo && (
-          <div className="demo-badge">
-            🎭 Datos de Demostración
-          </div>
-        )}
+        {isDemo && <div className="demo-badge">🎭 Datos de Demostración</div>}
         <div className="user-info">
           <div className="avatar-container">
-            <img 
-              src={user.avatar_url} 
-              alt="Avatar" 
+            <img
+              src={user.avatar_url}
+              alt="Avatar"
               className="user-avatar"
               onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                e.currentTarget.style.display = "none";
+                e.currentTarget.nextElementSibling?.classList.remove("hidden");
               }}
             />
             <div className="avatar-placeholder hidden">
               <span className="avatar-initials">
-                {user.name?.charAt(0)?.toUpperCase() || user.login?.charAt(0)?.toUpperCase() || '?'}
+                {user.name?.charAt(0)?.toUpperCase() ||
+                  user.login?.charAt(0)?.toUpperCase() ||
+                  "?"}
               </span>
             </div>
           </div>
@@ -77,8 +76,14 @@ function AuthButton() {
           </p>
           {isDemo && (
             <div className="demo-info">
-              <p><strong>ℹ️ Nota:</strong> Estos son datos de demostración generados automáticamente.</p>
-              <p>Para obtener datos reales, necesitas configurar un backend que maneje el intercambio seguro de tokens.</p>
+              <p>
+                <strong>ℹ️ Nota:</strong> Estos son datos de demostración
+                generados automáticamente.
+              </p>
+              <p>
+                Para obtener datos reales, necesitas configurar un backend que
+                maneje el intercambio seguro de tokens.
+              </p>
             </div>
           )}
         </div>
@@ -177,11 +182,21 @@ export default function AuthExample() {
                 <h5>3. Para datos reales (Opcional)</h5>
                 <p>Para obtener tus datos reales de GitHub, necesitas:</p>
                 <ul>
-                  <li>Crear un backend que maneje el intercambio código↔token</li>
-                  <li>Usar tu <code>client_secret</code> de forma segura en el servidor</li>
+                  <li>
+                    Crear un backend que maneje el intercambio código↔token
+                  </li>
+                  <li>
+                    Usar tu <code>client_secret</code> de forma segura en el
+                    servidor
+                  </li>
                   <li>Hacer llamadas autenticadas a la API de GitHub</li>
                 </ul>
-                <p><em>Actualmente funciona con datos de demostración generados dinámicamente.</em></p>
+                <p>
+                  <em>
+                    Actualmente funciona con datos de demostración generados
+                    dinámicamente.
+                  </em>
+                </p>
               </div>
             </div>
           </div>
