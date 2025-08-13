@@ -2654,3 +2654,307 @@ body {
     font-size: 0.9rem;
   }
 }
+
+/* Auth.js Styles */
+.auth-demo {
+  padding: 2rem;
+}
+
+.demo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.auth-status {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  margin-bottom: 1.5rem;
+}
+
+.user-email {
+  display: block;
+  color: #374151;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.status-badge.authenticated {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge.unauthenticated {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.auth-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.login-button {
+  background: #374151;
+  color: white;
+}
+
+.login-button:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logout-button {
+  background: #ef4444;
+  color: white;
+}
+
+.logout-button:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.15);
+}
+
+.auth-info {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  max-width: 600px;
+  text-align: left;
+}
+
+.auth-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: #374151;
+}
+
+.auth-info p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.auth-features {
+  background: #f8fafc;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.auth-features h3 {
+  margin: 0 0 1.5rem 0;
+  color: #374151;
+  text-align: center;
+}
+
+.auth-features .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.auth-features .feature-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.auth-features .feature-item h4 {
+  margin: 0 0 0.5rem 0;
+  color: #374151;
+  font-size: 1.1rem;
+}
+
+.auth-features .feature-item p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.github-icon {
+  margin-right: 0.5rem;
+}
+
+.auth-config-warning {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.auth-config-warning p {
+  margin: 0 0 0.5rem 0;
+  color: #92400e;
+  font-weight: 600;
+}
+
+.auth-config-warning ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #92400e;
+}
+
+.auth-config-warning li {
+  margin-bottom: 0.25rem;
+}
+
+.auth-setup-guide {
+  background: #f8fafc;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  max-width: 800px;
+  text-align: left;
+}
+
+.auth-setup-guide h4 {
+  margin: 0 0 1.5rem 0;
+  color: #374151;
+  text-align: center;
+}
+
+.setup-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.setup-step {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.setup-step h5 {
+  margin: 0 0 0.75rem 0;
+  color: #374151;
+  font-size: 1.1rem;
+}
+
+.setup-step p {
+  margin: 0 0 0.5rem 0;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.setup-step ul {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+}
+
+.setup-step li {
+  margin-bottom: 0.25rem;
+  color: #6b7280;
+}
+
+.setup-step a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.setup-step a:hover {
+  text-decoration: underline;
+}
+
+.setup-step code {
+  background: #f3f4f6;
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.env-example {
+  margin-top: 0.75rem;
+}
+
+.env-example pre {
+  background: #1f2937;
+  color: #e5e7eb;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Auth responsive */
+@media (max-width: 768px) {
+  .auth-demo {
+    padding: 1rem;
+  }
+
+  .auth-status {
+    padding: 1.5rem;
+  }
+
+  .user-email {
+    font-size: 1rem;
+  }
+
+  .auth-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .auth-info {
+    padding: 1rem;
+  }
+
+  .auth-features .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-setup-guide {
+    padding: 1rem;
+  }
+
+  .setup-step {
+    padding: 1rem;
+  }
+
+  .env-example pre {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+}
