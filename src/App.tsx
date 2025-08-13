@@ -18,7 +18,21 @@ const examples = [
   {
     slug: "react-table",
     label: "React Table",
-    element: <Tabla data={[{ name: "Juan", age: 30 }]} />,
+    element: (
+      <Tabla
+        data={[
+          {
+            id: 1,
+            name: "Juan",
+            age: 30,
+            email: "juan@example.com",
+            department: "Engineering",
+            salary: 50000,
+            status: "active",
+          },
+        ]}
+      />
+    ),
   },
   { slug: "zustand", label: "Zustand", element: <ZustandExample /> },
   { slug: "dayjs", label: "Dayjs", element: <DayjsExample /> },
