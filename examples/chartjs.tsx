@@ -110,6 +110,18 @@ export function ChartJSExample() {
         </p>
       </div>
 
+      <div className="installation-section">
+        <h3>📦 Instalación</h3>
+        <div className="installation-code">
+          <pre>
+            <code>{`npm install chart.js react-chartjs-2`}</code>
+          </pre>
+        </div>
+        <p className="installation-note">
+          Chart.js es una biblioteca poderosa para crear gráficos HTML5 responsivos y animados.
+        </p>
+      </div>
+
       <div className="chart-demo">
         <div className="chart-controls">
           <button

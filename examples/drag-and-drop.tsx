@@ -51,6 +51,18 @@ export default function DragAndDropExample() {
         </p>
       </div>
 
+      <div className="installation-section">
+        <h3>📦 Instalación</h3>
+        <div className="installation-code">
+          <pre>
+            <code>{`npm install @formkit/drag-and-drop`}</code>
+          </pre>
+        </div>
+        <p className="installation-note">
+          FormKit Drag and Drop es una biblioteca liviana y flexible para funcionalidad drag & drop.
+        </p>
+      </div>
+
       <div className="drag-drop-demo">
         <div className="add-task-section">
           <div className="input-group">

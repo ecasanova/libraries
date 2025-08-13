@@ -175,6 +175,18 @@ export function ZustandExample() {
         <p>Gestión de estado simple y potente sin boilerplate</p>
       </div>
 
+      <div className="installation-section">
+        <h3>📦 Instalación</h3>
+        <div className="installation-code">
+          <pre>
+            <code>{`npm install zustand`}</code>
+          </pre>
+        </div>
+        <p className="installation-note">
+          Zustand es una solución de gestión de estado pequeña, rápida y escalable.
+        </p>
+      </div>
+
       <div className="zustand-demo">
         <div className="demo-grid">
           <Counter />
