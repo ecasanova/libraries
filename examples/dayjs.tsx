@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 
-const now = dayjs();
-const formatted = now.format("DD/MM/YYYY");
-console.log(formatted);
+export default function DayjsExample() {
+  const formatted = dayjs().format("DD/MM/YYYY");
+  return <div>{formatted}</div>;
+}

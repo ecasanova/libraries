@@ -4,9 +4,7 @@ const schema = z.object({
   email: z.string().email(),
 });
 
-export function handleSubmit(data: unknown) {
-  const parsed = schema.safeParse(data);
-  if (!parsed.success) {
-    console.error(parsed.error.format());
-  }
+export default function ZodExample() {
+  const result = schema.safeParse({ email: "correo" });
+  return <pre>{JSON.stringify(result, null, 2)}</pre>;
 }
