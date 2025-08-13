@@ -170,13 +170,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signIn = () => {
     if (!GITHUB_CLIENT_ID) {
       console.error('GITHUB_CLIENT_ID not configured');
+      alert('Error: GitHub Client ID no configurado. Revisa tu archivo .env');
       return;
     }
 
-    const scope = 'read:user user:email';
-    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${encodeURIComponent(scope)}&state=${Math.random().toString(36)}`;
+    // Guardar la página actual para redirigir de vuelta después del login
+    const currentUrl = window.location.href;
+    localStorage.setItem('auth_redirect_url', currentUrl);
     
-    console.log('Redirecting to GitHub OAuth:', githubAuthUrl);
+    const redirectUri = getRedirectUri();
+    const scope = 'read:user user:email';
+    const state = Math.random().toString(36).substring(2, 15); // Estado para seguridad
+    
+    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}&state=${state}`;
+    
+    console.log('Redirigiendo a GitHub OAuth:', {
+      clientId: GITHUB_CLIENT_ID,
+      redirectUri,
+      currentUrl,
+      githubAuthUrl
+    });
+    
     window.location.href = githubAuthUrl;
   };
 
