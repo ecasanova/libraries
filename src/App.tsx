@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { translations, Language } from "./i18n";
+import { FlagES, FlagUS } from "./flags";
+import { LanguageIcon } from "./language-icon";
 import { ChartJSExample } from "../examples/chartjs";
 import DragAndDropExample from "../examples/drag-and-drop";
 import FontsourceExample from "../examples/fontsource";
@@ -154,15 +156,7 @@ export default function App() {
               React Common Libraries
             </a>
 
-            <button
-              className="lang-toggle"
-              onClick={() => setLang(lang === "es" ? "en" : "es")}
-              aria-label={
-                lang === "es" ? "Switch to English" : "Cambiar a Español"
-              }
-            >
-              {lang === "es" ? "EN" : "ES"}
-            </button>
+
 
             {/* Botón hamburguesa */}
             <button
@@ -180,6 +174,7 @@ export default function App() {
               className={`nav-links ${
                 mobileMenuOpen ? "nav-links-mobile open" : "nav-links-desktop"
               }`}
+              style={{ display: "flex", alignItems: "center", gap: 12 }}
             >
               {examples.map((e) => (
                 <a
@@ -191,6 +186,18 @@ export default function App() {
                   {e.label}
                 </a>
               ))}
+              {/* Selector de idioma al final del nav */}
+              <button
+                className="lang-toggle"
+                onClick={() => setLang(lang === "es" ? "en" : "es")}
+                aria-label={
+                  lang === "es" ? "Switch to English" : "Cambiar a Español"
+                }
+                style={{ background: "none", border: "none", padding: 0, cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}
+              >
+                <LanguageIcon />
+                {lang === "es" ? <FlagUS /> : <FlagES />}
+              </button>
             </div>
           </div>
 
