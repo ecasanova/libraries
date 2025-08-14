@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { translations, Language } from "./i18n";
 import { ChartJSExample } from "../examples/chartjs";
 import DragAndDropExample from "../examples/drag-and-drop";
 import FontsourceExample from "../examples/fontsource";
@@ -44,22 +45,17 @@ const examples = [
   { slug: "zod", label: "Zod", element: <ZodExample /> },
 ];
 
-function HomePage() {
+function HomePage({ lang }: { lang: Language }) {
+  const t = translations[lang];
   return (
     <div className="home-page">
       <div className="hero-section">
-        <h1>🚀 React Common Libraries Showcase</h1>
-        <p className="hero-subtitle">
-          Colección interactiva de las mejores bibliotecas para React
-        </p>
+        <h1>{t.hero.title}</h1>
+        <p className="hero-subtitle">{t.hero.subtitle}</p>
         <div className="hero-description">
-          <p>
-            Explora ejemplos completos y funcionales de las bibliotecas más
-            populares del ecosistema React. Cada ejemplo incluye código,
-            documentación y casos de uso prácticos.
-          </p>
+          <p>{t.hero.description}</p>
           <p className="recommendation-note">
-            📚 Bibliotecas recomendadas por{" "}
+            {t.hero.recommendation}{" "}
             <a
               href="https://github.com/midudev"
               target="_blank"
@@ -78,61 +74,46 @@ function HomePage() {
             key={example.slug}
             href={`#${example.slug}`}
             className="library-card"
+            aria-label={`${t.viewDemo} ${example.label}`}
           >
             <div className="card-header">
               <h3>{example.label}</h3>
             </div>
             <div className="card-description">
-              {getLibraryDescription(example.slug)}
+              {getLibraryDescription(example.slug, lang)}
             </div>
             <div className="card-footer">
-              <span className="view-demo">Ver Demo →</span>
+              <span className="view-demo">{t.viewDemo}</span>
             </div>
           </a>
         ))}
       </div>
 
       <div className="features-section">
-        <h2>✨ Características</h2>
+        <h2>{t.featuresTitle}</h2>
         <div className="features-list">
-          <div className="feature-item">
-            <h4>🎯 Ejemplos Prácticos</h4>
-            <p>Cada biblioteca incluye múltiples ejemplos de uso real</p>
-          </div>
-          <div className="feature-item">
-            <h4>📖 Código Completo</h4>
-            <p>Código fuente disponible con explicaciones detalladas</p>
-          </div>
-          <div className="feature-item">
-            <h4>🎨 Diseño Moderno</h4>
-            <p>Interfaz limpia y responsive para todos los dispositivos</p>
-          </div>
-          <div className="feature-item">
-            <h4>⚡ Rendimiento</h4>
-            <p>Optimizado con Vite para desarrollo rápido</p>
-          </div>
+          {t.features.map((feature) => (
+            <div key={feature.title} className="feature-item">
+              <h4>{feature.title}</h4>
+              <p>{feature.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-function getLibraryDescription(slug: string): string {
-  const descriptions: Record<string, string> = {
-    chartjs: "Gráficos interactivos y responsivos con Chart.js",
-    "drag-and-drop": "Funcionalidad drag & drop con @formkit/drag-and-drop",
-    fontsource: "Fuentes web auto-hospedadas para npm",
-    hotkeys: "Atajos de teclado potentes con hotkeys-js",
-    motion: "Animaciones fluidas con Framer Motion",
-    "react-table": "Tablas potentes con TanStack Table",
-    zustand: "Gestión de estado simple y efectiva",
-    dayjs: "Manipulación de fechas ligera y moderna",
-    zod: "Validación de esquemas TypeScript-first",
-  };
-  return descriptions[slug] || "Biblioteca de React";
+function getLibraryDescription(slug: string, lang: Language): string {
+  const descriptions = translations[lang].libraryDescriptions;
+  return (
+    descriptions[slug] ||
+    (lang === "es" ? "Biblioteca de React" : "React library")
+  );
 }
 
 export default function App() {
+  const [lang, setLang] = useState<Language>("es");
   const [example, setExample] = useState<string>(
     window.location.hash.replace("#", "")
   );
@@ -144,6 +125,12 @@ export default function App() {
     return () => window.removeEventListener("hashchange", handler);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  const t = translations[lang];
+
   const current = examples.find((e) => e.slug === example);
 
   // Manejar caso especial para auth (no en navegación pero accesible)
@@ -151,7 +138,7 @@ export default function App() {
     if (example === "auth") {
       return <AuthExample />;
     }
-    return current ? current.element : <HomePage />;
+    return current ? current.element : <HomePage lang={lang} />;
   };
 
   const handleLinkClick = () => {
@@ -161,17 +148,27 @@ export default function App() {
   return (
     <>
       <header className="header">
-        <nav className="navbar">
+        <nav className="navbar" aria-label={t.nav.main}>
           <div className="nav-container">
             <a href="#" className="nav-brand" onClick={handleLinkClick}>
               React Common Libraries
             </a>
 
+            <button
+              className="lang-toggle"
+              onClick={() => setLang(lang === "es" ? "en" : "es")}
+              aria-label={
+                lang === "es" ? "Switch to English" : "Cambiar a Español"
+              }
+            >
+              {lang === "es" ? "EN" : "ES"}
+            </button>
+
             {/* Botón hamburguesa */}
             <button
               className={`hamburger ${mobileMenuOpen ? "active" : ""}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
+              aria-label={t.nav.toggleMenu}
             >
               <span></span>
               <span></span>
@@ -210,7 +207,7 @@ export default function App() {
       <footer className="footer">
         <div className="footer-content">
           <p>
-            ✨ Creado con ❤️ por{" "}
+            {t.footer.createdBy}{" "}
             <a
               href="https://github.com/ecasanova"
               target="_blank"
@@ -221,7 +218,7 @@ export default function App() {
             </a>
           </p>
           <p>
-            📚 Bibliotecas recomendadas por{" "}
+            {t.footer.recommendedBy}{" "}
             <a
               href="https://github.com/midudev"
               target="_blank"
@@ -232,7 +229,7 @@ export default function App() {
             </a>
           </p>
           <p>
-            📂 Código fuente disponible en{" "}
+            {t.footer.sourceCode}{" "}
             <a
               href="https://github.com/ecasanova/libraries"
               target="_blank"
