@@ -1,4 +1,5 @@
 import { AuthProvider, useAuth } from "../src/lib/auth-context";
+import { Language } from "../src/i18n";
 
 function AuthButton() {
   const { user, isLoading, isAuthenticated, signIn, signOut } = useAuth();
@@ -112,16 +113,38 @@ function AuthButton() {
   );
 }
 // Wrapper que incluye el AuthProvider personalizado
-export default function AuthExample() {
+interface ExampleTranslations {
+  headerTitle: string;
+  headerDescription: string;
+  setupHeading: string;
+}
+
+const translations: Record<Language, ExampleTranslations> = {
+  es: {
+    headerTitle: "🔐 GitHub OAuth",
+    headerDescription:
+      "Autenticación personalizada con GitHub OAuth (sin NextAuth.js)",
+    setupHeading: "📦 Configuración",
+  },
+  en: {
+    headerTitle: "🔐 GitHub OAuth",
+    headerDescription:
+      "Custom authentication with GitHub OAuth (without NextAuth.js)",
+    setupHeading: "📦 Setup",
+  },
+};
+
+export default function AuthExample({ lang = "es" as Language }) {
+  const t = translations[lang];
   return (
     <AuthProvider>
       <div className="page-header">
-        <h2>🔐 GitHub OAuth</h2>
-        <p>Autenticación personalizada con GitHub OAuth (sin NextAuth.js)</p>
+        <h2>{t.headerTitle}</h2>
+        <p>{t.headerDescription}</p>
       </div>
 
       <div className="installation-section">
-        <h3>📦 Configuración</h3>
+        <h3>{t.setupHeading}</h3>
         <div className="installation-code">
           <pre>
             <code>
@@ -232,4 +255,3 @@ export default function AuthExample() {
     </AuthProvider>
   );
 }
-import { useEffect, useState } from "react";

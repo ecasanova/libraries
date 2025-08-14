@@ -10,6 +10,7 @@ import {
   ColumnFiltersState,
 } from "@tanstack/react-table";
 import { useState } from "react";
+import { Language } from "../src/i18n";
 
 interface Person {
   id: number;
@@ -156,7 +157,32 @@ const columns: ColumnDef<Person>[] = [
   },
 ];
 
-export function ReactTableExample() {
+interface ExampleTranslations {
+  headerTitle: string;
+  headerDescription: string;
+  installHeading: string;
+  installNote: string;
+}
+
+const translations: Record<Language, ExampleTranslations> = {
+  es: {
+    headerTitle: "📊 React Table (TanStack Table)",
+    headerDescription: "Tabla potente con ordenamiento, filtrado, paginación y más",
+    installHeading: "📦 Instalación",
+    installNote:
+      "TanStack Table es una biblioteca headless para construir tablas poderosas y flexibles.",
+  },
+  en: {
+    headerTitle: "📊 React Table (TanStack Table)",
+    headerDescription: "Powerful table with sorting, filtering, pagination and more",
+    installHeading: "📦 Installation",
+    installNote:
+      "TanStack Table is a headless library for building powerful, flexible tables.",
+  },
+};
+
+export function ReactTableExample({ lang }: { lang: Language }) {
+  const t = translations[lang];
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -186,21 +212,18 @@ export function ReactTableExample() {
   return (
     <div className="page-container">
       <div className="page-header">
-        <h1>📊 React Table (TanStack Table)</h1>
-        <p>Tabla potente con ordenamiento, filtrado, paginación y más</p>
+        <h1>{t.headerTitle}</h1>
+        <p>{t.headerDescription}</p>
       </div>
 
       <div className="installation-section">
-        <h3>📦 Instalación</h3>
+        <h3>{t.installHeading}</h3>
         <div className="installation-code">
           <pre>
             <code>{`npm install @tanstack/react-table`}</code>
           </pre>
         </div>
-        <p className="installation-note">
-          TanStack Table es una biblioteca headless para construir tablas
-          poderosas y flexibles.
-        </p>
+        <p className="installation-note">{t.installNote}</p>
       </div>
 
       <div className="table-demo">
@@ -428,6 +451,6 @@ function Table({ data }) {
 }
 
 // Mantenemos la función original para compatibilidad
-export function Tabla({ data }: { data: Person[] }) {
-  return <ReactTableExample />;
+export function Tabla({ data, lang }: { data: Person[]; lang: Language }) {
+  return <ReactTableExample lang={lang} />;
 }

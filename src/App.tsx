@@ -14,19 +14,35 @@ import ZodExample from "../examples/zod";
 import AuthExample from "../examples/auth";
 
 const examples = [
-  { slug: "chartjs", label: "ChartJS", element: <ChartJSExample /> },
+  {
+    slug: "chartjs",
+    label: "ChartJS",
+    element: (lang: Language) => <ChartJSExample lang={lang} />,
+  },
   {
     slug: "drag-and-drop",
     label: "Drag & Drop",
-    element: <DragAndDropExample />,
+    element: (lang: Language) => <DragAndDropExample lang={lang} />,
   },
-  { slug: "fontsource", label: "Fontsource", element: <FontsourceExample /> },
-  { slug: "hotkeys", label: "Hotkeys", element: <HotkeysExample /> },
-  { slug: "motion", label: "Motion", element: <FramerMotionExample /> },
+  {
+    slug: "fontsource",
+    label: "Fontsource",
+    element: (lang: Language) => <FontsourceExample lang={lang} />,
+  },
+  {
+    slug: "hotkeys",
+    label: "Hotkeys",
+    element: (lang: Language) => <HotkeysExample lang={lang} />,
+  },
+  {
+    slug: "motion",
+    label: "Motion",
+    element: (lang: Language) => <FramerMotionExample lang={lang} />,
+  },
   {
     slug: "react-table",
     label: "React Table",
-    element: (
+    element: (lang: Language) => (
       <Tabla
         data={[
           {
@@ -39,12 +55,25 @@ const examples = [
             status: "active",
           },
         ]}
+        lang={lang}
       />
     ),
   },
-  { slug: "zustand", label: "Zustand", element: <ZustandExample /> },
-  { slug: "dayjs", label: "Dayjs", element: <DayjsExample /> },
-  { slug: "zod", label: "Zod", element: <ZodExample /> },
+  {
+    slug: "zustand",
+    label: "Zustand",
+    element: (lang: Language) => <ZustandExample lang={lang} />,
+  },
+  {
+    slug: "dayjs",
+    label: "Dayjs",
+    element: (lang: Language) => <DayjsExample lang={lang} />,
+  },
+  {
+    slug: "zod",
+    label: "Zod",
+    element: (lang: Language) => <ZodExample lang={lang} />,
+  },
 ];
 
 function HomePage({ lang }: { lang: Language }) {
@@ -138,9 +167,9 @@ export default function App() {
   // Manejar caso especial para auth (no en navegación pero accesible)
   const renderContent = () => {
     if (example === "auth") {
-      return <AuthExample />;
+      return <AuthExample lang={lang} />;
     }
-    return current ? current.element : <HomePage lang={lang} />;
+    return current ? current.element(lang) : <HomePage lang={lang} />;
   };
 
   const handleLinkClick = () => {

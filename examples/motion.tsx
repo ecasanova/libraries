@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Language } from "../src/i18n";
 
 const animationVariants = {
   fadeIn: {
@@ -117,7 +118,32 @@ function StaggeredList() {
   );
 }
 
-export default function FramerMotionExample() {
+interface ExampleTranslations {
+  headerTitle: string;
+  headerDescription: string;
+  installHeading: string;
+  installNote: string;
+}
+
+const translations: Record<Language, ExampleTranslations> = {
+  es: {
+    headerTitle: "✨ Framer Motion",
+    headerDescription: "Animaciones fluidas y gestos interactivos para React",
+    installHeading: "📦 Instalación",
+    installNote:
+      "Framer Motion es una biblioteca de animación lista para producción para React.",
+  },
+  en: {
+    headerTitle: "✨ Framer Motion",
+    headerDescription: "Smooth animations and interactive gestures for React",
+    installHeading: "📦 Installation",
+    installNote:
+      "Framer Motion is a production-ready animation library for React.",
+  },
+};
+
+export default function FramerMotionExample({ lang }: { lang: Language }) {
+  const t = translations[lang];
   const [currentAnimation, setCurrentAnimation] =
     useState<keyof typeof animationVariants>("fadeIn");
   const [showElement, setShowElement] = useState(true);
@@ -139,21 +165,18 @@ export default function FramerMotionExample() {
   return (
     <div className="page-container">
       <div className="page-header">
-        <h1>✨ Framer Motion</h1>
-        <p>Animaciones fluidas y gestos interactivos para React</p>
+        <h1>{t.headerTitle}</h1>
+        <p>{t.headerDescription}</p>
       </div>
 
       <div className="installation-section">
-        <h3>📦 Instalación</h3>
+        <h3>{t.installHeading}</h3>
         <div className="installation-code">
           <pre>
             <code>{`npm install framer-motion`}</code>
           </pre>
         </div>
-        <p className="installation-note">
-          Framer Motion es una biblioteca de animación lista para producción
-          para React.
-        </p>
+        <p className="installation-note">{t.installNote}</p>
       </div>
 
       <div className="motion-demo">

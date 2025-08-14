@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { Language } from "../src/i18n";
 
 // Store para contador simple
 type CounterStore = {
@@ -167,25 +168,47 @@ function TodoList() {
   );
 }
 
-export function ZustandExample() {
+interface ExampleTranslations {
+  headerTitle: string;
+  headerDescription: string;
+  installHeading: string;
+  installNote: string;
+}
+
+const translations: Record<Language, ExampleTranslations> = {
+  es: {
+    headerTitle: "🐻 Zustand State Management",
+    headerDescription: "Gestión de estado simple y potente sin boilerplate",
+    installHeading: "📦 Instalación",
+    installNote:
+      "Zustand es una solución de gestión de estado pequeña, rápida y escalable.",
+  },
+  en: {
+    headerTitle: "🐻 Zustand State Management",
+    headerDescription: "Simple and powerful state management without boilerplate",
+    installHeading: "📦 Installation",
+    installNote:
+      "Zustand is a small, fast and scalable state management solution.",
+  },
+};
+
+export function ZustandExample({ lang }: { lang: Language }) {
+  const t = translations[lang];
   return (
     <div className="page-container">
       <div className="page-header">
-        <h1>🐻 Zustand State Management</h1>
-        <p>Gestión de estado simple y potente sin boilerplate</p>
+        <h1>{t.headerTitle}</h1>
+        <p>{t.headerDescription}</p>
       </div>
 
       <div className="installation-section">
-        <h3>📦 Instalación</h3>
+        <h3>{t.installHeading}</h3>
         <div className="installation-code">
           <pre>
             <code>{`npm install zustand`}</code>
           </pre>
         </div>
-        <p className="installation-note">
-          Zustand es una solución de gestión de estado pequeña, rápida y
-          escalable.
-        </p>
+        <p className="installation-note">{t.installNote}</p>
       </div>
 
       <div className="zustand-demo">
