@@ -48,7 +48,7 @@ function HomePage() {
   return (
     <div className="home-page">
       <div className="hero-section">
-        <h1>🚀 React Libraries Showcase</h1>
+  <h1>🚀 React Common Libraries Showcase</h1>
         <p className="hero-subtitle">
           Colección interactiva de las mejores bibliotecas para React
         </p>
@@ -164,7 +164,7 @@ export default function App() {
         <nav className="navbar">
           <div className="nav-container">
             <a href="#" className="nav-brand" onClick={handleLinkClick}>
-              React Libraries
+              React Common Libraries
             </a>
 
             {/* Botón hamburguesa */}
