@@ -208,8 +208,8 @@ export default function DayjsExample() {
     : operations;
 
   return (
-    <div className="example-container">
-      <div className="example-header">
+    <div className="page-container">
+      <div className="page-header">
         <h1>📅 Day.js</h1>
         <p>
           Biblioteca minimalista para manipular, validar, formatear y mostrar

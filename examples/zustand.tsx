@@ -169,8 +169,8 @@ function TodoList() {
 
 export function ZustandExample() {
   return (
-    <div className="example-container">
-      <div className="example-header">
+    <div className="page-container">
+      <div className="page-header">
         <h1>🐻 Zustand State Management</h1>
         <p>Gestión de estado simple y potente sin boilerplate</p>
       </div>

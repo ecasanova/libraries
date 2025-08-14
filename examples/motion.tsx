@@ -137,8 +137,8 @@ export default function FramerMotionExample() {
   };
 
   return (
-    <div className="example-container">
-      <div className="example-header">
+    <div className="page-container">
+      <div className="page-header">
         <h1>✨ Framer Motion</h1>
         <p>Animaciones fluidas y gestos interactivos para React</p>
       </div>

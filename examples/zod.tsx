@@ -184,8 +184,8 @@ export default function ZodExample() {
   const invalidResult = validateExample(currentExample.invalidData);
 
   return (
-    <div className="example-container">
-      <div className="example-header">
+    <div className="page-container">
+      <div className="page-header">
         <h1>🛡️ Zod</h1>
         <p>
           Validación de esquemas TypeScript-first con inferencia de tipos

@@ -147,10 +147,8 @@ export default function HotkeysExample() {
   }, {} as Record<string, HotkeyAction[]>);
 
   return (
-    <div
-      className={`example-container ${theme === "dark" ? "dark-theme" : ""}`}
-    >
-      <div className="example-header">
+    <div className={`page-container ${theme === "dark" ? "dark-theme" : ""}`}>
+      <div className="page-header">
         <h1>⌨️ Hotkeys.js</h1>
         <p>Atajos de teclado poderosos y flexibles para aplicaciones web</p>
       </div>

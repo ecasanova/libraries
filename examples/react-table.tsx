@@ -184,8 +184,8 @@ export function ReactTableExample() {
   });
 
   return (
-    <div className="example-container">
-      <div className="example-header">
+    <div className="page-container">
+      <div className="page-header">
         <h1>📊 React Table (TanStack Table)</h1>
         <p>Tabla potente con ordenamiento, filtrado, paginación y más</p>
       </div>

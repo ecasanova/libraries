@@ -113,8 +113,8 @@ export default function FontsourceExample() {
   const [selectedFont, setSelectedFont] = useState<string | null>(null);
 
   return (
-    <div className="example-container">
-      <div className="example-header">
+    <div className="page-container">
+      <div className="page-header">
         <h1>🔤 Fontsource</h1>
         <p>Fuentes web auto-hospedadas para proyectos npm</p>
       </div>

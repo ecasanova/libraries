@@ -42,8 +42,8 @@ export default function DragAndDropExample() {
   };
 
   return (
-    <div className="example-container">
-      <div className="example-header">
+    <div className="page-container">
+      <div className="page-header">
         <h1>🎯 Drag & Drop Task List</h1>
         <p>
           Arrastra las tareas para reordenarlas. Usa la biblioteca

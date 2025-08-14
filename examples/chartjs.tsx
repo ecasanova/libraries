@@ -102,8 +102,8 @@ export function ChartJSExample() {
   };
 
   return (
-    <div className="example-container">
-      <div className="example-header">
+    <div className="page-container">
+      <div className="page-header">
         <h1>📊 Chart.js + React</h1>
         <p>
           Gráficos interactivos y responsivos con Chart.js y react-chartjs-2

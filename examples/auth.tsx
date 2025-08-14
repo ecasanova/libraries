@@ -115,7 +115,7 @@ function AuthButton() {
 export default function AuthExample() {
   return (
     <AuthProvider>
-      <div className="example-header">
+      <div className="page-header">
         <h2>🔐 GitHub OAuth</h2>
         <p>Autenticación personalizada con GitHub OAuth (sin NextAuth.js)</p>
       </div>
