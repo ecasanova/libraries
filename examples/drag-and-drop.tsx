@@ -1,5 +1,6 @@
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 import { useState } from "react";
+import { Language } from "../src/i18n";
 
 interface Task {
   id: string;
@@ -7,7 +8,46 @@ interface Task {
   completed: boolean;
 }
 
-export default function DragAndDropExample() {
+interface ExampleTranslations {
+  headerTitle: string;
+  headerDescription: string;
+  installHeading: string;
+  installNote: string;
+  addPlaceholder: string;
+  addButton: string;
+  stats: { total: string; completed: string; pending: string };
+  codeExampleTitle: string;
+}
+
+const translations: Record<Language, ExampleTranslations> = {
+  es: {
+    headerTitle: "🎯 Lista de tareas Drag & Drop",
+    headerDescription:
+      "Arrastra las tareas para reordenarlas. Usa la biblioteca @formkit/drag-and-drop",
+    installHeading: "📦 Instalación",
+    installNote:
+      "FormKit Drag and Drop es una biblioteca liviana y flexible para funcionalidad drag & drop.",
+    addPlaceholder: "Agregar nueva tarea...",
+    addButton: "➕ Agregar",
+    stats: { total: "Total", completed: "Completadas", pending: "Pendientes" },
+    codeExampleTitle: "📖 Código de ejemplo:",
+  },
+  en: {
+    headerTitle: "🎯 Drag & Drop Task List",
+    headerDescription:
+      "Drag tasks to reorder them. Uses the @formkit/drag-and-drop library",
+    installHeading: "📦 Installation",
+    installNote:
+      "FormKit Drag and Drop is a lightweight and flexible library for drag & drop functionality.",
+    addPlaceholder: "Add new task...",
+    addButton: "➕ Add",
+    stats: { total: "Total", completed: "Completed", pending: "Pending" },
+    codeExampleTitle: "📖 Example code:",
+  },
+};
+
+export default function DragAndDropExample({ lang }: { lang: Language }) {
+  const t = translations[lang];
   const [newTask, setNewTask] = useState("");
 
   const [ref, tasks, setTasks] = useDragAndDrop<HTMLDivElement, Task>([
@@ -44,24 +84,18 @@ export default function DragAndDropExample() {
   return (
     <div className="page-container">
       <div className="page-header">
-        <h1>🎯 Drag & Drop Task List</h1>
-        <p>
-          Arrastra las tareas para reordenarlas. Usa la biblioteca
-          @formkit/drag-and-drop
-        </p>
+        <h1>{t.headerTitle}</h1>
+        <p>{t.headerDescription}</p>
       </div>
 
       <div className="installation-section">
-        <h3>📦 Instalación</h3>
+        <h3>{t.installHeading}</h3>
         <div className="installation-code">
           <pre>
             <code>{`npm install @formkit/drag-and-drop`}</code>
           </pre>
         </div>
-        <p className="installation-note">
-          FormKit Drag and Drop es una biblioteca liviana y flexible para
-          funcionalidad drag & drop.
-        </p>
+        <p className="installation-note">{t.installNote}</p>
       </div>
 
       <div className="drag-drop-demo">
@@ -71,12 +105,12 @@ export default function DragAndDropExample() {
               type="text"
               value={newTask}
               onChange={(e) => setNewTask(e.target.value)}
-              placeholder="Agregar nueva tarea..."
+              placeholder={t.addPlaceholder}
               className="task-input"
               onKeyPress={(e) => e.key === "Enter" && addTask()}
             />
             <button onClick={addTask} className="add-btn">
-              ➕ Agregar
+              {t.addButton}
             </button>
           </div>
         </div>
@@ -110,14 +144,20 @@ export default function DragAndDropExample() {
         </div>
 
         <div className="stats">
-          <p>Total: {tasks.length} tareas</p>
-          <p>Completadas: {tasks.filter((t) => t.completed).length}</p>
-          <p>Pendientes: {tasks.filter((t) => !t.completed).length}</p>
+          <p>
+            {t.stats.total}: {tasks.length}
+          </p>
+          <p>
+            {t.stats.completed}: {tasks.filter((t) => t.completed).length}
+          </p>
+          <p>
+            {t.stats.pending}: {tasks.filter((t) => !t.completed).length}
+          </p>
         </div>
       </div>
 
       <div className="code-example">
-        <h3>📖 Código de ejemplo:</h3>
+        <h3>{t.codeExampleTitle}</h3>
         <pre>
           {`import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 

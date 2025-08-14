@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import hotkeys from "hotkeys-js";
+import { Language } from "../src/i18n";
 
 interface HotkeyAction {
   key: string;
@@ -15,7 +16,34 @@ interface LogEntry {
   description: string;
 }
 
-export default function HotkeysExample() {
+interface ExampleTranslations {
+  headerTitle: string;
+  headerDescription: string;
+  installHeading: string;
+  installNote: string;
+}
+
+const translations: Record<Language, ExampleTranslations> = {
+  es: {
+    headerTitle: "⌨️ Hotkeys.js",
+    headerDescription:
+      "Atajos de teclado poderosos y flexibles para aplicaciones web",
+    installHeading: "📦 Instalación",
+    installNote:
+      "Hotkeys.js es una biblioteca robusta para manejar atajos de teclado en aplicaciones web.",
+  },
+  en: {
+    headerTitle: "⌨️ Hotkeys.js",
+    headerDescription:
+      "Powerful and flexible keyboard shortcuts for web applications",
+    installHeading: "📦 Installation",
+    installNote:
+      "Hotkeys.js is a robust library for handling keyboard shortcuts in web apps.",
+  },
+};
+
+export default function HotkeysExample({ lang }: { lang: Language }) {
+  const t = translations[lang];
   const [log, setLog] = useState<LogEntry[]>([]);
   const [counter, setCounter] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -149,21 +177,18 @@ export default function HotkeysExample() {
   return (
     <div className={`page-container ${theme === "dark" ? "dark-theme" : ""}`}>
       <div className="page-header">
-        <h1>⌨️ Hotkeys.js</h1>
-        <p>Atajos de teclado poderosos y flexibles para aplicaciones web</p>
+        <h1>{t.headerTitle}</h1>
+        <p>{t.headerDescription}</p>
       </div>
 
       <div className="installation-section">
-        <h3>📦 Instalación</h3>
+        <h3>{t.installHeading}</h3>
         <div className="installation-code">
           <pre>
             <code>{`npm install hotkeys-js`}</code>
           </pre>
         </div>
-        <p className="installation-note">
-          Hotkeys.js es una biblioteca robusta para manejar atajos de teclado en
-          aplicaciones web.
-        </p>
+        <p className="installation-note">{t.installNote}</p>
       </div>
 
       {/* Notificaciones */}

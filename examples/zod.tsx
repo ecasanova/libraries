@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { useState } from "react";
+import { Language } from "../src/i18n";
 
 // Esquemas de ejemplo
 const UserSchema = z.object({
@@ -58,7 +59,34 @@ interface ValidationExample {
   description: string;
 }
 
-export default function ZodExample() {
+interface ExampleTranslations {
+  headerTitle: string;
+  headerDescription: string;
+  installHeading: string;
+  installNote: string;
+}
+
+const translations: Record<Language, ExampleTranslations> = {
+  es: {
+    headerTitle: "🛡️ Zod",
+    headerDescription:
+      "Validación de esquemas TypeScript-first con inferencia de tipos estática",
+    installHeading: "📦 Instalación",
+    installNote:
+      "Zod es una biblioteca de validación de esquemas TypeScript-first con inferencia de tipos estática.",
+  },
+  en: {
+    headerTitle: "🛡️ Zod",
+    headerDescription:
+      "TypeScript-first schema validation with static type inference",
+    installHeading: "📦 Installation",
+    installNote:
+      "Zod is a TypeScript-first schema validation library with static type inference.",
+  },
+};
+
+export default function ZodExample({ lang }: { lang: Language }) {
+  const t = translations[lang];
   const [selectedExample, setSelectedExample] = useState(0);
   const [customData, setCustomData] = useState("");
   const [validationResult, setValidationResult] = useState<any>(null);
@@ -186,24 +214,18 @@ export default function ZodExample() {
   return (
     <div className="page-container">
       <div className="page-header">
-        <h1>🛡️ Zod</h1>
-        <p>
-          Validación de esquemas TypeScript-first con inferencia de tipos
-          estática
-        </p>
+        <h1>{t.headerTitle}</h1>
+        <p>{t.headerDescription}</p>
       </div>
 
       <div className="installation-section">
-        <h3>📦 Instalación</h3>
+        <h3>{t.installHeading}</h3>
         <div className="installation-code">
           <pre>
             <code>{`npm install zod`}</code>
           </pre>
         </div>
-        <p className="installation-note">
-          Zod es una biblioteca de validación de esquemas TypeScript-first con
-          inferencia de tipos estática.
-        </p>
+        <p className="installation-note">{t.installNote}</p>
       </div>
 
       <div className="zod-demo">

@@ -10,6 +10,31 @@ import weekOfYear from "dayjs/plugin/weekOfYear";
 import dayOfYear from "dayjs/plugin/dayOfYear";
 import "dayjs/locale/es";
 import { useState, useEffect } from "react";
+import { Language } from "../src/i18n";
+
+interface ExampleTranslations {
+  headerTitle: string;
+  headerDescription: string;
+  installHeading: string;
+  installNote: string;
+}
+
+const translations: Record<Language, ExampleTranslations> = {
+  es: {
+    headerTitle: "📅 Day.js",
+    headerDescription: "Manipulación de fechas ligera y moderna",
+    installHeading: "📦 Instalación",
+    installNote:
+      "Day.js es una biblioteca ligera para manejar fechas y tiempos en JavaScript.",
+  },
+  en: {
+    headerTitle: "📅 Day.js",
+    headerDescription: "Lightweight, modern date manipulation",
+    installHeading: "📦 Installation",
+    installNote:
+      "Day.js is a lightweight library for handling dates and times in JavaScript.",
+  },
+};
 
 // Configurar plugins
 dayjs.extend(relativeTime);
@@ -22,9 +47,6 @@ dayjs.extend(advancedFormat);
 dayjs.extend(weekOfYear);
 dayjs.extend(dayOfYear);
 
-// Configurar idioma
-dayjs.locale("es");
-
 interface DateOperation {
   title: string;
   description: string;
@@ -33,7 +55,9 @@ interface DateOperation {
   category: string;
 }
 
-export default function DayjsExample() {
+export default function DayjsExample({ lang }: { lang: Language }) {
+  dayjs.locale(lang);
+  const t = translations[lang];
   const [currentTime, setCurrentTime] = useState(dayjs());
   const [selectedTimezone, setSelectedTimezone] = useState(
     "America/Mexico_City"
@@ -210,24 +234,18 @@ export default function DayjsExample() {
   return (
     <div className="page-container">
       <div className="page-header">
-        <h1>📅 Day.js</h1>
-        <p>
-          Biblioteca minimalista para manipular, validar, formatear y mostrar
-          fechas
-        </p>
+        <h1>{t.headerTitle}</h1>
+        <p>{t.headerDescription}</p>
       </div>
 
       <div className="installation-section">
-        <h3>📦 Instalación</h3>
+        <h3>{t.installHeading}</h3>
         <div className="installation-code">
           <pre>
             <code>{`npm install dayjs`}</code>
           </pre>
         </div>
-        <p className="installation-note">
-          Day.js es una alternativa minimalista a Moment.js con API similar pero
-          solo 2kB.
-        </p>
+        <p className="installation-note">{t.installNote}</p>
       </div>
 
       <div className="dayjs-demo">
