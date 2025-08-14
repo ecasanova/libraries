@@ -1,3 +1,4 @@
+/* Zona horaria: America/Bogota */
 * {
   margin: 0;
   padding: 0;
@@ -1635,6 +1636,7 @@ body {
   cursor: pointer;
   font-size: 0.8rem;
   transition: all 0.2s;
+  margin-left: 0.5rem;
 }
 
 .delete-btn:hover {
@@ -2500,10 +2502,6 @@ body {
     padding: 0.4rem 0.8rem;
   }
 
-  .main-content {
-    padding: 1rem;
-  }
-
   .main-content > h1 {
     font-size: 2rem;
   }
@@ -2571,12 +2569,12 @@ body {
   }
   
   .libraries-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
   
   .features-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   
   .features-section {
