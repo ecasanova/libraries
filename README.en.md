@@ -1,10 +1,10 @@
-# Ejemplos de librerías recomendadas para React
+# Recommended libraries for React
 
-[English version](README.en.md)
+[Versión en español](README.md)
 
-Esta guía muestra ejemplos breves de cómo usar algunas librerías populares en aplicaciones React.
+This guide shows brief examples of how to use some popular libraries in React applications.
 
-## zod – validaciones de esquema
+## zod – schema validation
 ```tsx
 import { z } from "zod";
 
@@ -20,7 +20,7 @@ function handleSubmit(data: unknown) {
 }
 ```
 
-## day.js – trabajar con fechas
+## day.js – work with dates
 ```tsx
 import dayjs from "dayjs";
 
@@ -28,7 +28,7 @@ const now = dayjs();
 const formatted = now.format("DD/MM/YYYY");
 ```
 
-## @tanstack/react-table – crear tablas
+## @tanstack/react-table – create tables
 ```tsx
 import {
   useReactTable,
@@ -37,11 +37,11 @@ import {
 } from "@tanstack/react-table";
 
 const columns = [
-  { accessorKey: "name", header: "Nombre" },
-  { accessorKey: "age", header: "Edad" },
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "age", header: "Age" },
 ];
 
-function Tabla({ data }) {
+function Table({ data }) {
   const table = useReactTable({
     data,
     columns,
@@ -80,7 +80,7 @@ function Tabla({ data }) {
 }
 ```
 
-## Auth.js – autenticación de usuarios
+## Auth.js – user authentication
 ```tsx
 import { signIn, signOut, useSession } from "next-auth/react";
 
@@ -89,37 +89,37 @@ export default function AuthButton() {
   return session ? (
     <>
       <span>{session.user?.email}</span>
-      <button onClick={() => signOut()}>Salir</button>
+      <button onClick={() => signOut()}>Sign out</button>
     </>
   ) : (
-    <button onClick={() => signIn("github")}>Entrar</button>
+    <button onClick={() => signIn("github")}>Sign in</button>
   );
 }
 ```
 
-## Motion – animaciones con JavaScript
+## Motion – JavaScript animations
 ```tsx
 import { motion } from "framer-motion";
 
 export default function FadeIn() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      Hola mundo
+      Hello world
     </motion.div>
   );
 }
 ```
 
-## fontsource – cargar tipografías web
+## fontsource – load web fonts
 ```tsx
 import "@fontsource/roboto/400.css";
 
 function App() {
-  return <div style={{ fontFamily: "Roboto" }}>Texto con Roboto</div>;
+  return <div style={{ fontFamily: "Roboto" }}>Text with Roboto</div>;
 }
 ```
 
-## Chart.js – gráficas HTML5 accesibles
+## Chart.js – accessible HTML5 charts
 ```tsx
 import {
   Chart as ChartJS,
@@ -132,7 +132,7 @@ import { Doughnut } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const data = {
-  labels: ["Rojo", "Azul", "Amarillo"],
+  labels: ["Red", "Blue", "Yellow"],
   datasets: [
     {
       data: [12, 19, 3],
@@ -141,12 +141,12 @@ const data = {
   ],
 };
 
-function Grafica() {
+function Chart() {
   return <Doughnut data={data} />;
 }
 ```
 
-## Zustand – manejo de estado global
+## Zustand – global state management
 ```tsx
 import { create } from "zustand";
 
@@ -161,12 +161,12 @@ function Counter() {
 }
 ```
 
-## formkit-drag-and-drop – arrastrar y soltar
+## formkit-drag-and-drop – drag and drop
 ```tsx
 import { createDragAndDrop } from "@formkit/drag-and-drop";
 import { useEffect, useRef } from "react";
 
-export default function Lista() {
+export default function List() {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -177,14 +177,14 @@ export default function Lista() {
 
   return (
     <ul ref={ref}>
-      <li>Elemento 1</li>
-      <li>Elemento 2</li>
+      <li>Item 1</li>
+      <li>Item 2</li>
     </ul>
   );
 }
 ```
 
-## hotkeys-js – atajos de teclado
+## hotkeys-js – keyboard shortcuts
 ```tsx
 import { useEffect } from "react";
 import hotkeys from "hotkeys-js";
@@ -193,7 +193,7 @@ export default function Hotkeys() {
   useEffect(() => {
     hotkeys("ctrl+k", (event) => {
       event.preventDefault();
-      console.log("Abrir buscador");
+      console.log("Open search");
     });
 
     return () => {
@@ -204,4 +204,3 @@ export default function Hotkeys() {
   return null;
 }
 ```
-

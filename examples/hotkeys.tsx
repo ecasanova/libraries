@@ -167,7 +167,7 @@ export default function HotkeysExample() {
       </div>
 
       {/* Notificaciones */}
-      <div className="notifications-container">
+      <div className="notifications-container" aria-live="polite">
         {notifications.map((notification, index) => (
           <div key={index} className="notification">
             {notification}
