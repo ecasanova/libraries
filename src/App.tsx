@@ -48,7 +48,7 @@ function HomePage() {
   return (
     <div className="home-page">
       <div className="hero-section">
-  <h1>🚀 React Common Libraries Showcase</h1>
+        <h1>🚀 React Common Libraries Showcase</h1>
         <p className="hero-subtitle">
           Colección interactiva de las mejores bibliotecas para React
         </p>
@@ -145,7 +145,7 @@ export default function App() {
   }, []);
 
   const current = examples.find((e) => e.slug === example);
-  
+
   // Manejar caso especial para auth (no en navegación pero accesible)
   const renderContent = () => {
     if (example === "auth") {
@@ -206,9 +206,7 @@ export default function App() {
           )}
         </nav>
       </header>
-      <main className="main-content">
-        {renderContent()}
-      </main>
+      <main className="main-content">{renderContent()}</main>
       <footer className="footer">
         <div className="footer-content">
           <p>
